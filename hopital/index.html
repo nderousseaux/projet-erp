@@ -2,32 +2,36 @@
 <html lang="fr">
 <head>
 	<meta charset="UTF-8"/>
-	<title>Hopital</title>
+	<title>Gestion hopital</title>
 	<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
 	<meta name="robots" content="noindex, nofollow"/>
 	<meta name="description" content="Module de gestion de l'hopital"/>
-	<link rel="stylesheet" type="text/css" href="index.css"/>
+	<link rel="stylesheet" type="text/css" href="style/index.css"/>
 </head>
 <body>
 <header>
-	<h1>Module Theme Hospital</h1>
+	<h1>Module Hopital</h1>
 </header>
 <div>
 	<section>
 		<h2>Actes médicaux</h2>
-		<div>
+		<div id="prevus">
 			<h3>Prévus</h3>
 			<ul>
 				<li>
 					Placeholder
+					<input type="checkbox" id="confirmer" name="confirmer"/>
+					<label for="confirmer1">Confirmer</label>
 				</li>
 				<li>
 					Placeholder
+					<input type="checkbox" id="confirmer" name="confirmer"/>
+					<label for="confirmer">Confirmer</label>
 				</li>
 			</ul>
 		</div>
 
-		<div>
+		<div id="confirmes">
 			<h3>Confirmés</h3>
 			<ul>
 				<li>
@@ -39,7 +43,7 @@
 			</ul>
 		</div>
 
-		<div>
+		<div id="passes">
 			<h3>Passés</h3>
 			<ul>
 				<li>
@@ -50,13 +54,12 @@
 				</li>
 			</ul>
 		</div>
-
-		
 	</section>
 
 	<section>
 		<h2>Ajout résultat examen</h2>
 	</section>
 </div>
+<script type="text/javascript" src="script/index.js"></script>
 </body>
 </html>
