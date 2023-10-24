@@ -33,7 +33,7 @@ function recupRdv(typeRdv) {
 }
 
 /**
- * Affiche dans des balises li les informations récupérées
+ * Affiche dans les sections les informations récupérées
  * Dans le cas d'un rendez-vous prévu, une checkbox est ajoutée pour valider
  * le rendez-vous
  * @param {string} typeRdv type de rendez-vous à récupérer
@@ -43,26 +43,33 @@ function afficherRdv(typeRdv) {
 	recupRdv(typeRdv).then(donnees => {
 		// Détermine l'emplacement
 		if (typeRdv === "prevus") {
-			ul = document.querySelector("#prevus > ul");
+			container = document.getElementById("prevus");
 		}
 		else if (typeRdv === "confirmes") {
-			ul = document.querySelector("#confirmes > ul");
+			container = document.getElementById("confirmes");
 		}
 		else if (typeRdv === "passes") {
-			ul = document.querySelector("#passes > ul");
+			container = document.getElementById("passes");
 		}
 
 		// Récupère les valeurs de chaque ligne
 		for (let i = 0; i < donnees.length; i++) {
-			li = document.createElement("li");
-			li.textContent = "";
-			donneesObj = Object.values(donnees[i]);
+			let div = document.createElement("div");
+			let p = document.createElement("p");
+			let donneesObj = Object.values(donnees[i]);
+
+			
 
 			for (let y = 0; y < donneesObj.length; y++) {
 				if (donneesObj[y] != null) {
-					li.textContent += donneesObj[y] + " ";
+					p.textContent += donneesObj[y];
+
+					if (y < donneesObj.length && donneesObj[y + 1] != null) {
+						p.textContent += " - ";
+					}
 				}
 			}
+			div.appendChild(p);
 
 			// Si on doit confirmer le rdv, ajoute une checkbox
 			if (typeRdv === "prevus") {
@@ -71,39 +78,49 @@ function afficherRdv(typeRdv) {
 				checkbox.id = "confirmer";
 				checkbox.name = "confirmer";
 
-				// Ajoute un évenement, si cochée, supprime la ligne
-				/*
-				 * TODO : Doit marquer dans la bdd que le rdv est confirmé
-				 * et l'ajouter à la liste des rdv confirmés
-				 */
-				checkbox.addEventListener("change", () => {
-					ulCheck = document.querySelector("#prevus > ul");
+				checkbox.onclick = _ => {
 					if (checkbox.checked) {
-						console.log("Checkbox cochée");
-						const li = checkbox.parentNode;
-		
-						li.parentNode.removeChild(li);
-		
-						ulCheck.childElementCount;
-						if (ulCheck.childElementCount === 0) {
-							const message = document.createElement("p");
-							message.textContent =
-								"Il n'y a plus de rendez-vous en attente";
-							ulCheck.appendChild(message);
-						}
+						confirmerRdv(Object.values(donnees[i])[0]);
 					}
-				});
+				};
 
 				// Ajoute un label pour la checkbox
 				let label = document.createElement("label");
 				label.htmlFor = "confirmer";
 				label.appendChild(document.createTextNode("Confirmer"));
 
-				li.appendChild(checkbox);
-				li.appendChild(label);
+				div.appendChild(checkbox);
+				div.appendChild(label);
 			}
 
-			ul.appendChild(li);
+			container.appendChild(div);
 		}
 	});
+}
+
+function confirmerRdv(id) {
+
+	// Champ à envoyer au back, pour indiquer l'id du rdv à confirmer
+	let champPost = new FormData();
+	champPost.append("id", id);
+
+	// Envoi l'id et vérifie la réponse
+	fetch("../backend/confirmerRdv.php", {
+		method: "POST",
+		body: champPost
+	})
+	.then(reponse => {
+		reponse.json()
+			.then(donnees => {
+				if (donnees.confirme) {
+					location.reload();
+				}
+			})
+			.catch(err => {
+				console.log(err);
+			})
+	})
+	.catch(err => {
+		reject(err);
+	})
 }

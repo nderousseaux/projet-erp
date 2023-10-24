@@ -4,13 +4,14 @@ class AccesBdd {
 
 	public function __construct() {
 		// Chemin vers le fichier de la base de données
-		$db_file = "hopital.db";
+		$db_file = "bdd/hopital.db";
 
 		// Connexion à la base de données
 		$this->pdo = new PDO("sqlite:$db_file");
 
 		// Création de la table si elle n'existe pas
 		$this->pdo->exec("CREATE TABLE IF NOT EXISTS hopital (
+			id INTEGER PRIMARY KEY AUTOINCREMENT,
 			date DATE,
 			heure TIME,
 			examen TEXT,
@@ -36,9 +37,7 @@ class AccesBdd {
 		$stmt->execute();
 
 		// Récupère le tableau associé
-		$resultat = $stmt->fetchAll(PDO::FETCH_ASSOC);
-
-		return $resultat;
+		return  $stmt->fetchAll(PDO::FETCH_ASSOC);
 	}
 
 	/**
@@ -53,9 +52,7 @@ class AccesBdd {
 		$stmt->execute();
 
 		// Récupère le tableau associé
-		$resultat = $stmt->fetchAll(PDO::FETCH_ASSOC);
-
-		return $resultat;
+		return $stmt->fetchAll(PDO::FETCH_ASSOC);
 	}
 
 	/**
@@ -71,8 +68,29 @@ class AccesBdd {
 		$stmt->execute();
 
 		// Récupère le tableau associé
-		$resultat = $stmt->fetchAll(PDO::FETCH_ASSOC);
+		return $stmt->fetchAll(PDO::FETCH_ASSOC);
+	}
 
-		return $resultat;
+	/**
+	 * Confirme un rendez-vous
+	 * @param  int $id ID du rendez-vous à confirmer
+	 * @return bool true si la requête a réussi
+	 */
+	public function confirmerRdv($id) {
+		$stmt = $this->pdo->prepare("
+			UPDATE hopital SET confirme = 1 WHERE id = :id
+		");
+
+		$stmt->bindParam(":id", $id);
+		$stmt->execute();
+
+
+		$stmt = $this->pdo->prepare("
+			SELECT confirme FROM hopital WHERE id = :id
+		");
+		$stmt->bindParam(":id", $id);
+		$stmt->execute();
+
+		return $stmt->fetch(PDO::FETCH_ASSOC);
 	}
 }
