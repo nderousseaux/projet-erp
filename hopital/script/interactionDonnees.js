@@ -40,10 +40,13 @@ function afficherRdv(typeRdv) {
 				}
 
 			}
-			let icon_files = document.createElement("div");
-			icon_files.innerHTML = "<img class=\"file\" src=\"img/file.png\" />";
-			icon_files.classList.add("colonne");
-			grille.appendChild(icon_files);
+			if (typeRdv == "passes") {
+				let icon_files = document.createElement("div");
+				icon_files.innerHTML = "<img class=\"file\" src=\"img/file.png\" />";
+				icon_files.classList.add("colonne");
+				icon_files.addEventListener("click", show_files, false);
+				grille.appendChild(icon_files);
+			}
 			div.appendChild(grille);
 
 			// Si on doit confirmer le rdv, ajoute une checkbox
