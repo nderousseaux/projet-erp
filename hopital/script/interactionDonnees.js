@@ -25,7 +25,7 @@ function afficherRdv(typeRdv) {
 			grille.classList.add("grille");
 
 			let donneesObj = Object.values(donnees[i]);
-			let cmpt = 0;
+			let cmpt = 0; // Utile ??
 			for (let y = 0; y < donneesObj.length; y++) {
 				let cellule = document.createElement("div");
 				cellule.textContent = donneesObj[y];
@@ -34,8 +34,18 @@ function afficherRdv(typeRdv) {
 				if (donneesObj[y] != null) {
 					cmpt++;
 					grille.appendChild(cellule);
+				} else {
+					let vide = document.createElement("div");
+					vide.textContent = "-"
+					vide.classList.add("colonne");
+					grille.appendChild(vide);
 				}
+
 			}
+			let icon_files = document.createElement("div");
+			icon_files.innerHTML = "<img class=\"file\" src=\"img/file.png\" />";
+			icon_files.classList.add("colonne");
+			grille.appendChild(icon_files);
 			div.appendChild(grille);
 
 			// Si on doit confirmer le rdv, ajoute une checkbox

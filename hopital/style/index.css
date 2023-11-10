@@ -178,10 +178,15 @@ label {
 
 	.grille {
 		display: grid !important;
-		grid-template-columns: repeat(11, 1fr);
+		grid-template-columns: repeat(12, 1fr);
 		width: calc(100% - 20px);
 		padding: 10px;
 		min-height: 80px:
 		overflow-y: auto;
+	}
+
+	.file {
+		height: 100%;
+		width: 50%;
 	}
 }
