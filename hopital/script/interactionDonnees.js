@@ -25,16 +25,14 @@ function afficherRdv(typeRdv) {
 			grille.classList.add("grille");
 
 			let donneesObj = Object.values(donnees[i]);
-			let cmpt = 0; // Utile ??
 			for (let y = 0; y < donneesObj.length; y++) {
 				let cellule = document.createElement("div");
 				cellule.textContent = donneesObj[y];
 				cellule.classList.add("colonne");
 
-				if (donneesObj[y] != null) {
-					cmpt++;
+				if (donneesObj[y] != null)
 					grille.appendChild(cellule);
-				} else {
+				else {
 					let vide = document.createElement("div");
 					vide.textContent = "-"
 					vide.classList.add("colonne");
