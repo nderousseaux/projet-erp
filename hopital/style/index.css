@@ -52,12 +52,19 @@ section > div {
 	margin-bottom: 20px;
 	flex-direction: column;
 	align-items: center;
-	background: linear-gradient(180deg, #69a5d6, #93dfdb);
+	background-color: #69a5d6;
+	background-image: linear-gradient(180deg, #69a5d6, #93dfdb);
 	border-radius: 10px;
+	transition: background-color 0.5s ease;
 }
 
-.drop {
-	background: yellow;
+#depot {
+	background-color: #69a5d6;
+}
+
+#depot.drop {
+	background-color: #93dfdb;
+	background-image: none;
 }
 
 #prevus,
