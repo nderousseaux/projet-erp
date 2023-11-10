@@ -56,6 +56,10 @@ section > div {
 	border-radius: 10px;
 }
 
+.drop {
+	background: yellow;
+}
+
 #prevus,
 #confirmes,
 #passes{
