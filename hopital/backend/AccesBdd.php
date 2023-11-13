@@ -23,6 +23,14 @@ class AccesBdd {
 			confirme BOOLEAN,
 			reglement INTEGER
 		)");
+
+		$this->pdo->exec("CREATE TABLE IF NOT EXISTS files (
+			id INTEGER PRIMARY KEY AUTOINCREMENT,
+			name TEXT,
+			related_to INTEGER,
+			content BLOB,
+			FOREIGN KEY(related_to) REFERENCES hopital(id)
+		)");
 	}
 
 	/**
@@ -92,5 +100,19 @@ class AccesBdd {
 		$stmt->execute();
 
 		return $stmt->fetch(PDO::FETCH_ASSOC);
+	}
+
+	public function sendFile($id, $filename, $content) {
+		// Le decodoage est pas utile, plus jolie de laisser encoder dans la base de données
+		$contenu = base64_decode($content);
+
+		$stmt = $this->pdo->prepare("
+			INSERT INTO files (name, related_to, content) VALUES (:filename, :id, :content)
+		");
+
+		$stmt->bindParam(":filename", $filename);
+		$stmt->bindParam(":id", $id);
+		$stmt->bindParam(":content", $content);
+		$stmt->execute();
 	}
 }

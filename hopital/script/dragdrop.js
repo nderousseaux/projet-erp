@@ -33,4 +33,19 @@ function drop(event) {
 			return;
 			break;
 	}
+	// Recherche de l'id sur la div du haut
+	let id = event.target;
+	if (id.tagName != "DIV")
+		id = id.parentNode;
+	id = id.parentNode.previousSibling.childNodes[0].childNodes[0].innerHTML;
+	console.log(id);
+
+	let file = event.dataTransfer.files[0];
+	let filename = file.name;
+	let reader = new FileReader();
+	reader.onload = function(e) {
+		let content = e.target.result.split(',')[1];
+		sendFile(id,filename,content);
+	}
+	reader.readAsDataURL(file);
 }
