@@ -149,6 +149,14 @@ label {
 }
 
 	/* Dépôt de résultat */
+#confirmes > .listFiles,
+#passes > .listFiles {
+	display: initial;	
+	overflow: hidden;
+	max-height: 0;
+	transition: max-height 0.5s ease;
+}
+
 #depot {
 	display: flex;
 	width: 90%;

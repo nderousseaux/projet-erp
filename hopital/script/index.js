@@ -12,12 +12,22 @@ show_files = function(e) {
 			new_grille.innerHTML = "test";
 			new_grille.classList.add("listFiles");
 			div.insertBefore(new_grille, grille.nextSibling);
-		} else
-			grille.nextSibling.remove();
+			setTimeout(function() {
+				new_grille.style.maxHeight = "100px";
+			}, 50);
+		} else {
+			grille.nextSibling.style.maxHeight = 0;
+			setTimeout(function() {
+				grille.nextSibling.remove();
+			}, 500);
+		}
 	} else {
 		var new_grille = grille.cloneNode(true);
 		new_grille.innerHTML = "test";
 		new_grille.classList.add("listFiles");
 		div.insertBefore(new_grille, grille.nextSibling);
+		setTimeout(function() {
+			new_grille.style.maxHeight = "100px";
+		}, 50);
 	}
 }
