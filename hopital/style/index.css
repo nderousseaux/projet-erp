@@ -187,5 +187,6 @@ label {
 	.file {
 		height: 100%;
 		width: 50%;
+		max-width: 45px;
 	}
 }
