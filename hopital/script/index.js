@@ -18,7 +18,8 @@ show_files = function(e) {
 		} else {
 			grille.nextSibling.style.maxHeight = 0;
 			setTimeout(function() {
-				grille.nextSibling.remove();
+				if (grille.nextSibling.classList.contains("listFiles"))
+					grille.nextSibling.remove();
 			}, 500);
 		}
 	} else {
