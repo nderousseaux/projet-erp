@@ -52,6 +52,7 @@ function afficherRdv(typeRdv) {
 			// Si on doit confirmer le rdv, ajoute une checkbox
 			if (typeRdv === "prevus") {
 				let divCheckbox = document.createElement("div");
+				divCheckbox.classList.add("divCheckbox");
 				let checkbox = document.createElement("input");
 				checkbox.type = "checkbox";
 				checkbox.id = "confirmer";

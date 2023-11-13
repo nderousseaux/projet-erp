@@ -58,11 +58,11 @@ section > div {
 	transition: background-color 0.5s ease;
 }
 
-#depot {
+.depot {
 	background-color: #69a5d6;
 }
 
-#depot.drop {
+.depot.drop {
 	background-color: #93dfdb;
 	background-image: none;
 }
@@ -131,9 +131,7 @@ h3 {
 
 
 		/* Checkbox */
-#prevus > div > div:last-child,
-#confirmes > div > div:last-child,
-#passes > div > div:last-child{
+.divCheckbox {
 	display: flex;
 	width: calc(100% - 20px);
 }
@@ -157,7 +155,8 @@ label {
 	transition: max-height 0.5s ease;
 }
 
-#depot {
+#confirmes > .depot,
+#passes > .depot {
 	display: flex;
 	width: 90%;
 	height: 50vh;
