@@ -1,18 +1,25 @@
-const depot = document.getElementById("depot");
+function refreshEventDrop() {
+	let depot = document.getElementsByClassName("depot");
+	
+	for (let i = 0; i < depot.length; i++) {
+		depot[i].addEventListener('dragover', (e) => {
+			e.preventDefault();
+			depot[i].classList.add("drop");
+		});
 
-depot.addEventListener('dragover', (e) => {
-	e.preventDefault();
-	depot.classList.add("drop");
-});
-
-depot.addEventListener('dragleave', (e) => {
-	e.preventDefault();
-	depot.classList.remove("drop");
-});
+		depot[i].addEventListener('dragleave', (e) => {
+			e.preventDefault();
+			depot[i].classList.remove("drop");
+		});
+	}
+}
 
 function drop(event) {
 	event.preventDefault();	
-	depot.classList.remove("drop");
+	if (event.target.tagName != "DIV")
+		event.target.parentNode.classList.remove("drop");
+	else
+		event.target.classList.remove("drop");
 	console.log(event.dataTransfer.files);
 	switch (event.dataTransfer.files.length) {
 		case 0:

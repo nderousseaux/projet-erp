@@ -31,4 +31,5 @@ show_files = function(e) {
 			new_grille.style.maxHeight = "60vh";
 		}, 50);
 	}
+	refreshEventDrop();
 }
