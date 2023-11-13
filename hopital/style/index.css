@@ -63,7 +63,6 @@ section > div {
 #passes{
 	display: flex;
 	width: 95%;
-	max-height: 45vh;
 	margin-bottom: 5px;
 	padding: 10px 0;
 	flex-direction: column;
