@@ -32,4 +32,11 @@ show_files = function(e) {
 		}, 50);
 	}
 	refreshEventDrop();
+	let id = grille.childNodes[0].childNodes[0].innerHTML;
+	getFiles(id).then(donnees => {
+		for (let i = 0; i < donnees.length; i++) {
+			let ligne = Object.values(donnees[i]);
+			console.log(ligne);
+		}
+	});
 }

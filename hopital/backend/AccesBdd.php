@@ -115,4 +115,14 @@ class AccesBdd {
 		$stmt->bindParam(":content", $content);
 		$stmt->execute();
 	}
+
+	public function getFiles($id) {
+		$stmt = $this->pdo->prepare("
+			SELECT name FROM files WHERE related_to = :id
+		");
+		$stmt->bindParam(":id", $id);
+		$stmt->execute();
+
+		return $stmt->fetchAll(PDO::FETCH_ASSOC);
+	}
 }
