@@ -137,7 +137,6 @@ label {
 }
 
 	/* Dépôt de résultat */
-#confirmes > .listFiles,
 #passes > .listFiles {
 	display: initial;	
 	overflow: hidden;
@@ -150,11 +149,11 @@ label {
 	align-items: center;
 	justify-content: center;
 	background-color: #69a5d6;
+	transition: background-color 0.5s ease;
 }
 
 .depot.drop {
 	background-color: #93dfdb;
-	background-image: none;
 }
 
 @media screen and (min-width: 1081px) {
