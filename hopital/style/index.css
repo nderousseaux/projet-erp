@@ -156,6 +156,12 @@ label {
 	background-color: #93dfdb;
 }
 
+.file {
+	height: 100%;
+	width: 50%;
+	max-width: 45px;
+}
+
 @media screen and (min-width: 1081px) {
 	/* Sections */
 	section {
@@ -181,11 +187,5 @@ label {
 		padding: 10px;
 		min-height: 80px:
 		overflow-y: auto;
-	}
-
-	.file {
-		height: 100%;
-		width: 50%;
-		max-width: 45px;
 	}
 }
