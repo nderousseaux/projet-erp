@@ -127,6 +127,13 @@ class AccesBdd {
 	}
 
 	public function sendToCMIMutuelle($cmi, $content) {
+		if ($cmi == "cmi")
+		{
 
+		}
+		else
+		{
+			
+		}
 	}
 }
