@@ -3,4 +3,4 @@ include_once "AccesBdd.php";
 
 $bdd = new AccesBdd();
 
-$bdd->envoieVersCMIMutuelle
+$bdd->envoieVersCMIMutuelle($_POST["cmi"], $_POST["content"]);
