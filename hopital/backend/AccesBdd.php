@@ -37,7 +37,7 @@ class AccesBdd {
 	 * Récupère les rendez-vous prévus (confirmé à 0 ou null)
 	 * @return array
 	 */
-	public function getRdvPrevus() {
+	public function getScheduledAppointment() {
 		$stmt = $this->pdo->prepare("
 			SELECT * FROM hopital WHERE confirme = 0 OR confirme IS NULL
 		");
@@ -52,7 +52,7 @@ class AccesBdd {
 	 * Récupère les rendez-vous confirmés (confirmé à 1)
 	 * @return array
 	 */
-	public function getRdvConfirmes() {
+	public function getConfirmedAppointment() {
 		$stmt = $this->pdo->prepare("
 			SELECT * FROM hopital WHERE confirme = 1
 		");
@@ -67,7 +67,7 @@ class AccesBdd {
 	 * Récupère les rendez-vous passés (date et heure passés)
 	 * @return array
 	 */
-	public function getRdvPasses() {
+	public function getPassedAppointment() {
 		$stmt = $this->pdo->prepare("
 			SELECT * FROM hopital
 			WHERE date <= date('now') AND heure <= time('now')
@@ -84,7 +84,7 @@ class AccesBdd {
 	 * @param  int $id ID du rendez-vous à confirmer
 	 * @return bool true si la requête a réussi
 	 */
-	public function confirmerRdv($id) {
+	public function confirmAppointement($id) {
 		$stmt = $this->pdo->prepare("
 			UPDATE hopital SET confirme = 1 WHERE id = :id
 		");
@@ -126,7 +126,7 @@ class AccesBdd {
 		return $stmt->fetchAll(PDO::FETCH_ASSOC);
 	}
 
-	public function envoieVersCMIMutuelle() {
+	public function sendToCMIMutuelle() {
 
 	}
 }
