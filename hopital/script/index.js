@@ -1,6 +1,6 @@
-afficherRdv("prevus");
-afficherRdv("confirmes");
-afficherRdv("passes");
+printAppointment("prevus");
+printAppointment("confirmes");
+printAppointment("passes");
 
 show_files = function(e) {
 	let icon = event.target;
