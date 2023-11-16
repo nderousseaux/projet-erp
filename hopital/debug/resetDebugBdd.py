@@ -7,7 +7,12 @@ conn = sqlite3.connect('hopital.db')
 cur = conn.cursor()
 
 # Exécution d'une requête SQL pour ajouter des données
-
+cur.execute("""
+	CREATE TABLE IF NOT EXISTS hopital
+		(date CHAR, heure CHAR, examen CHAR, patient CHAR, metadata1 CHAR,
+		metadata2 CHAR, mutuelle CHAR, montant FLOAT, confirme INT,
+		reglement FLOAT)
+""")
 cur.execute("DELETE FROM hopital WHERE date IS NOT NULL")
 
 cur.execute("""
