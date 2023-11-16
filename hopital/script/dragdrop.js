@@ -1,6 +1,6 @@
 function refreshEventDrop() {
 	let depot = document.getElementsByClassName("depot");
-	
+
 	for (let i = 0; i < depot.length; i++) {
 		depot[i].addEventListener('dragover', (e) => {
 			e.preventDefault();
@@ -15,7 +15,7 @@ function refreshEventDrop() {
 }
 
 function drop(event) {
-	event.preventDefault();	
+	event.preventDefault();
 	if (event.target.tagName != "DIV")
 		event.target.parentNode.classList.remove("drop");
 	else
@@ -25,13 +25,11 @@ function drop(event) {
 		case 0:
 			alert("Ce qui a été déposé n'est pas un fichier");
 			return;
-			break;
 		case 1:
 			break;
 		default:
 			alert("Plus de 1 fichier a été déposé");
 			return;
-			break;
 	}
 	// Recherche de l'id sur la div du haut
 	let id = event.target;
