@@ -7,6 +7,7 @@
   <script src="script.js"></script>
 </head>
 <body>
+  <h1>Bienvenue - la mutuelle</h1>
   <div id = "liste"></div>
 </body>
 </html>
