@@ -5,8 +5,8 @@
  * @param {string} typeRdv type de rendez-vous à récupérer
  * 							(prevus, confirmes, passes)
  */
-function afficherRdv(typeRdv) {
-recupRdv(typeRdv).then(donnees => {
+function printAppointment(typeRdv) {
+getAppointment(typeRdv).then(donnees => {
 	// Détermine l'emplacement
 	if (typeRdv === "prevus") {
 		container = document.getElementById("prevus");
@@ -79,13 +79,13 @@ recupRdv(typeRdv).then(donnees => {
 	});
 }
 
-function confirmerRdv(id) {
+function confirmAppointment(id) {
 	// Champ à envoyer au back, pour indiquer l'id du rdv à confirmer
 	let champPost = new FormData();
 	champPost.append("id", id);
 
 	// Envoi l'id et vérifie la réponse
-	fetch("../backend/confirmerRdv.php", {
+	fetch("../backend/confirmAppointment.php", {
 		method: "POST",
 		body: champPost
 	})
