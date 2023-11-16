@@ -118,7 +118,7 @@ class AccesBdd {
 
 	public function getFiles($id) {
 		$stmt = $this->pdo->prepare("
-			SELECT name FROM files WHERE related_to = :id
+			SELECT id, name FROM files WHERE related_to = :id
 		");
 		$stmt->bindParam(":id", $id);
 		$stmt->execute();
