@@ -125,4 +125,8 @@ class AccesBdd {
 
 		return $stmt->fetchAll(PDO::FETCH_ASSOC);
 	}
+
+	public function envoieVersCMIMutuelle() {
+
+	}
 }
