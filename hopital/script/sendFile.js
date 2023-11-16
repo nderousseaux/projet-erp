@@ -5,6 +5,11 @@ function sendFile(id, filename, content) {
         champPost.append("filename", filename);
         champPost.append("content", content);
 
+		if (champPost.values.length != 3) {
+			console.log("error 3 args required");
+			return;
+		}
+
 		fetch("../backend/sendFile.php", {
 			method: "POST",
 			body: champPost
