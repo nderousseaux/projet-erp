@@ -18,8 +18,11 @@ show_files = function(e) {
 		} else {
 			let temp = grille.nextSibling.nextSibling;
 			if (temp && temp.classList.length) {
-				grille.nextSibling.remove();
 				temp.style.maxHeight = 0;
+				grille.nextSibling.style.maxHeight = 0;
+				setTimeout(function() {
+					grille.nextSibling.remove();
+				}, 1000);
 				setTimeout(function() {
 					temp.remove();
 				}, 500);
@@ -53,5 +56,8 @@ show_files = function(e) {
 			liste.appendChild(paragraph);
 		}
 		div.insertBefore(liste, grille.nextSibling);
+		setTimeout(function() {
+			liste.style.maxHeight = "60vh";
+		}, 50);
 	});
 }

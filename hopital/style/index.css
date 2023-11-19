@@ -158,9 +158,12 @@ label {
 }
 
 #passes > .liste {
+	overflow: hidden;
 	align-items: initial;
 	min-width: 90%;
 	padding-left: 5%;
+	max-height: 0;
+	transition: max-height 1s ease;
 }
 
 .file {
