@@ -91,7 +91,7 @@ section > div {
 	grid-template-columns: repeat(4, 1fr);
 	width: calc(100% - 20px);
 	padding: 10px;
-	min-height: 80px:
+	min-height: 80px;
 	overflow-y: auto;
 }
 
@@ -157,6 +157,12 @@ label {
 	background-color: #93dfdb;
 }
 
+#passes > .liste {
+	align-items: initial;
+	min-width: 90%;
+	padding-left: 5%;
+}
+
 .file {
 	height: 100%;
 	width: 50%;
@@ -179,6 +185,10 @@ label {
 	#confirmes > div,
 	#passes > div {
 		min-width: 100%;
+	}
+
+	#passes > .liste {
+		min-width: 95%;
 	}
 
 	.grille {

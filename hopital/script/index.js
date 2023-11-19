@@ -16,11 +16,20 @@ show_files = function(e) {
 				new_grille.style.maxHeight = "60vh";
 			}, 50);
 		} else {
-			grille.nextSibling.style.maxHeight = 0;
-			setTimeout(function() {
-				if (grille.nextSibling.classList.contains("listFiles"))
+			let temp = grille.nextSibling.nextSibling;
+			if (temp && temp.classList.length) {
+				grille.nextSibling.remove();
+				temp.style.maxHeight = 0;
+				setTimeout(function() {
+					temp.remove();
+				}, 500);
+			} else {
+				grille.nextSibling.style.maxHeight = 0;
+				setTimeout(function() {
 					grille.nextSibling.remove();
-			}, 500);
+				}, 500);
+			}
+			return;
 		}
 	} else {
 		var new_grille = grille.cloneNode(true);
@@ -34,9 +43,15 @@ show_files = function(e) {
 	refreshEventDrop();
 	let id = grille.childNodes[0].childNodes[0].innerHTML;
 	getFiles(id).then(donnees => {
+		if (donnees.length == 0) return;
+		let liste = document.createElement("div");
+		liste.classList.add("liste");
 		for (let i = 0; i < donnees.length; i++) {
 			let ligne = Object.values(donnees[i]);
-			console.log(ligne);
+			let paragraph = document.createElement("p");
+			paragraph.textContent = ligne[1];
+			liste.appendChild(paragraph);
 		}
+		div.insertBefore(liste, grille.nextSibling);
 	});
 }
