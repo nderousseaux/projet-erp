@@ -9,14 +9,23 @@
 <body>
   <h1>Bienvenue - la mutuelle</h1>
 <?php
-$DB="../data/mutuelle";
+$DB='../data/mutuelle.txt';
 
-function grep($id,$file)
+function grep($id,$dbfile)
 {
-  return shell_exec('grep -e "^[0-9\/]* '.$id.' " '.$file);
+  #return shell_exec('grep -e "^[0-9\/]* '.$id.' " '.$file);
+  $handle = fopen($dbfile, "r");
+  if ($handle) {
+      while (($line = fgets($handle)) !== false) {
+          echo '<div>'.$line.'</div>';
+      }
+  
+      fclose($handle);
+  }
+
 }
-$NUIG=htmlspecialchars($_GET["nuig"]).'!';
-echo grep($NUIG,$DB)
+$NUIG=htmlspecialchars($_GET["nuig"]);
+echo grep($NUIG,$DB);
 ?>
   <div id = "liste"></div>
 </body>
