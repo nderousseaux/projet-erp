@@ -29,7 +29,7 @@ cur.execute("""
 	INSERT INTO hopital (idGroland, date, heure, examen, patient, metadata1,
 		metadata2, mutuelle, montant, confirme, reglement)
 	VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)""",
-	('1234', '2023-09-01', '09:19:57', 'X_SCAN_02', 'A2', 'Jambe', 'Rotule',
+	('9876', '2023-09-01', '09:57:23', 'X_SCAN_02', 'A2', 'Jambe', 'Méta',
 		'MNOP', 200, 1, 80))
 
 cur.execute("""

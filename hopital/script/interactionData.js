@@ -62,7 +62,7 @@ function printAppointment(typeRdv) {
 
 				checkbox.onclick = _ => {
 					if (checkbox.checked) {
-						confirmerRdv(Object.values(donnees[i])[0]);
+						confirmAppointment(Object.values(donnees[i])[0]);
 					}
 				};
 
