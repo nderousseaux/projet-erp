@@ -13,18 +13,16 @@ class AccesBdd {
 		$this->pdo->exec("CREATE TABLE IF NOT EXISTS hopital (
 			id INTEGER PRIMARY KEY AUTOINCREMENT,
 			idGroland INTEGER,
-			date DATE,
-			heure TIME,
+			dateHeure DATETIME,
 			examen TEXT,
 			patient TEXT,
 			metadata1 TEXT,
 			metadata2 TEXT,
 			mutuelle TEXT,
 			montant INTEGER,
-			confirme BOOLEAN,
-			reglement INTEGER
-			payeDMI BOOLEAN,
-			payeMutuelle BOOLEAN
+			confirme BOOLEAN DEFAULT 0,
+			payeDMI BOOLEAN DEFAULT 0,
+			payeMutuelle BOOLEAN DEFAULT 0
 		)");
 
 		$this->pdo->exec("CREATE TABLE IF NOT EXISTS files (
@@ -34,6 +32,43 @@ class AccesBdd {
 			content BLOB,
 			FOREIGN KEY(related_to) REFERENCES hopital(id)
 		)");
+	}
+
+	public function newAppointment(
+		$idGroland, $dateHeure, $examen, $patient, $metadata1, $metadata2,
+		$mutuelle, $montant
+	) {
+		// Récupère les données du formulaire
+		$idGroland = htmlspecialchars($idGroland);
+		$dateHeure = htmlspecialchars($dateHeure);
+		$examen = htmlspecialchars($examen);
+		$patient = htmlspecialchars($patient);
+		$metadata1 = htmlspecialchars($metadata1);
+		$metadata2 = htmlspecialchars($metadata2);
+		$mutuelle = htmlspecialchars($mutuelle);
+		$montant = htmlspecialchars($montant);
+
+
+		$dateFormatee = DateTime::createFromFormat("Y-m-d\TH:i", $dateHeure);
+		$dateHeure = $dateFormatee->format("Y-m-d H:i");
+
+		// Ajoute le rendez-vous à la base de données
+		$stmt = $this->pdo->prepare("
+			INSERT INTO hopital (idGroland, dateHeure, examen, patient,
+				metadata1, metadata2, mutuelle, montant)
+			VALUES (:idGroland, :dateHeure, :examen, :patient, :metadata1,
+				:metadata2, :mutuelle, :montant)
+		");
+
+		$stmt->bindParam(":idGroland", $idGroland);
+		$stmt->bindParam(":dateHeure", $dateHeure);
+		$stmt->bindParam(":examen", $examen);
+		$stmt->bindParam(":patient", $patient);
+		$stmt->bindParam(":metadata1", $metadata1);
+		$stmt->bindParam(":metadata2", $metadata2);
+		$stmt->bindParam(":mutuelle", $mutuelle);
+		$stmt->bindParam(":montant", $montant);
+		$stmt->execute();
 	}
 
 	/**
@@ -118,7 +153,8 @@ class AccesBdd {
 	 */
 	public function getConfirmedAppointment() {
 		$stmt = $this->pdo->prepare("
-			SELECT * FROM hopital WHERE confirme = 1 AND date > date('now') AND heure > time('now')
+			SELECT * FROM hopital
+			WHERE confirme = 1 AND dateHeure > datetime('now')
 		");
 
 		$stmt->execute();
@@ -134,7 +170,7 @@ class AccesBdd {
 	public function getPassedAppointment() {
 		$stmt = $this->pdo->prepare("
 			SELECT * FROM hopital
-			WHERE confirme = 1 AND date <= date('now') AND heure <= time('now')
+			WHERE confirme = 1 AND dateHeure <= datetime('now')
 		");
 
 		$stmt->execute();

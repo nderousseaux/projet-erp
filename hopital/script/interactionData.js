@@ -19,6 +19,14 @@ function printAppointment(typeRdv) {
 			container = document.getElementById("passes");
 		}
 
+		if (donnees.length === 0) {
+			let div = document.createElement("div");
+			div.classList.add("aucunRdv");
+			div.textContent = "Aucun rendez-vous";
+			container.appendChild(div);
+			return;
+		}
+
 		// Récupère les valeurs de chaque ligne
 		for (let i = 0; i < donnees.length; i++) {
 			let div = document.createElement("div");
@@ -105,4 +113,22 @@ function confirmAppointment(id) {
 	.catch(err => {
 		reject(err);
 	})
+}
+
+function ajoutRdv() {
+	const form = document.getElementById("formAjoutRdv");
+
+	form.addEventListener("submit", (event) => {
+		event.preventDefault();
+
+		const formData = new FormData(form);
+
+		fetch("../backend/addAppointment.php", {
+			method: "POST",
+			body: formData
+		})
+		.catch(error => {
+			console.error(error);
+		});
+	});
 }

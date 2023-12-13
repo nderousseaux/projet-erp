@@ -1,6 +1,7 @@
 printAppointment("prevus");
 printAppointment("confirmes");
 printAppointment("passes");
+ajoutRdv();
 
 show_files = function(e) {
 	let icon = event.target;

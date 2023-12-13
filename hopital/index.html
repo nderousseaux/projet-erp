@@ -15,6 +15,28 @@
 </header>
 <div>
 	<section>
+		<h2>Ajouter un acte médical</h3>
+		<form id="formAjoutRdv">
+			<label for="idGroland">ID Groland:</label>
+			<input type="number" id="idGroland" name="idGroland" required><br><br>
+			<label for="dateHeure">Date et heure:</label>
+			<input type="datetime-local" id="dateHeure" name="dateHeure" required><br><br>
+			<label for="examen">Examen:</label>
+			<input type="text" id="examen" name="examen" required><br><br>
+			<label for="patient">Patient:</label>
+			<input type="text" id="patient" name="patient" required><br><br>
+			<label for="metadata1">Metadata 1:</label>
+			<input type="text" id="metadata1" name="metadata1"><br><br>
+			<label for="metadata2">Metadata 2:</label>
+			<input type="text" id="metadata2" name="metadata2"><br><br>
+			<label for="mutuelle">Mutuelle:</label>
+			<input type="text" id="mutuelle" name="mutuelle" required><br><br>
+			<label for="montant">Montant:</label>
+			<input type="number" id="montant" name="montant" required><br><br>
+			<input type="submit" value="Ajouter">
+		</form>
+	</section>
+	<section>
 		<h2>Actes médicaux</h2>
 		<div>
 			<h3>Prévus</h3>
@@ -33,16 +55,6 @@
 			</div>
 		</div>
 	</section>
-
-	<!--
-	<section>
-		<h2>Ajouter un résultat d'examen</h2>
-		<div id="depot" ondrop="drop(event)">
-			<p>Déposer le fichier de résultat de l'examen</p>
-		</div>
-	</section>
-	-->
-	
 </div>
 <script type="text/javascript" src="script/sendToCMIMutuelle.js"></script>
 <script type="text/javascript" src="script/sendFile.js"></script>
