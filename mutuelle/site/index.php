@@ -7,7 +7,7 @@
   <script src="script.js"></script>
 </head>
 <body>
-  <form action="./mutuelle.html" method="post">
+  <form action="./connexion.html" method="post">
   <ul>
     <li>
       <label for="id">Numéro Unique d’identifiant Graulandais &nbsp;:</label>
