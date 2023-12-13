@@ -9,7 +9,13 @@
 <body>
   <h1>Bienvenue - la mutuelle</h1>
 <?php
-echo 'Bonjour '.htmlspecialchars($_GET["nuig"]).'!';
+$DB="../data/mutuelle"
+function grep($id,$file)
+{
+  return shell_exec('grep -e "^[0-9\/]* '.$id.' " '.$file);
+}
+$NUIG=htmlspecialchars($_GET["nuig"]).'!';
+echo grep($NUIG,$DB)
 ?>
   <div id = "liste"></div>
 </body>
