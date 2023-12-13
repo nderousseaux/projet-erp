@@ -12,6 +12,7 @@ class AccesBdd {
 		// Création de la table si elle n'existe pas
 		$this->pdo->exec("CREATE TABLE IF NOT EXISTS hopital (
 			id INTEGER PRIMARY KEY AUTOINCREMENT,
+			idGroland INTEGER,
 			date DATE,
 			heure TIME,
 			examen TEXT,
@@ -22,6 +23,8 @@ class AccesBdd {
 			montant INTEGER,
 			confirme BOOLEAN,
 			reglement INTEGER
+			payeDMI BOOLEAN,
+			payeMutuelle BOOLEAN
 		)");
 
 		$this->pdo->exec("CREATE TABLE IF NOT EXISTS files (
@@ -31,6 +34,67 @@ class AccesBdd {
 			content BLOB,
 			FOREIGN KEY(related_to) REFERENCES hopital(id)
 		)");
+	}
+
+	/**
+	 * Réupère si la DMI a payé
+	 */
+	public function getPayeDMI($id) {
+		$stmt = $this->pdo->prepare("
+			SELECT payeDMI FROM hopital WHERE id = :id
+		");
+		$stmt->bindParam(":id", $id);
+		$stmt->execute();
+
+		return $stmt->fetch(PDO::FETCH_ASSOC);
+	}
+
+	/**
+	 * Réupère si la mutuelle a payé
+	 */
+	public function getPayeMutuelle($id) {
+		$stmt = $this->pdo->prepare("
+			SELECT payeMutuelle FROM hopital WHERE id = :id
+		");
+		$stmt->bindParam(":id", $id);
+		$stmt->execute();
+
+		return $stmt->fetch(PDO::FETCH_ASSOC);
+	}
+
+	/**
+	 * Indique que la DMI a payé
+	 */
+	public function setPayeDMI($id) {
+		$stmt = $this->pdo->prepare("
+			UPDATE hopital SET payeDMI = 1 WHERE id = :id
+		");
+		$stmt->bindParam(":id", $id);
+		$stmt->execute();
+	}
+
+	/**
+	 * Indique que la mutuelle a payé
+	 */
+	public function setPayeMutuelle($id) {
+		$stmt = $this->pdo->prepare("
+			UPDATE hopital SET payeMutuelle = 1 WHERE id = :id
+		");
+		$stmt->bindParam(":id", $id);
+		$stmt->execute();
+	}
+
+	/**
+	 * Récupère le tarif de l'acte
+	 */
+	public function getTarif($id) {
+		$stmt = $this->pdo->prepare("
+			SELECT montant FROM hopital WHERE id = :id
+		");
+		$stmt->bindParam(":id", $id);
+		$stmt->execute();
+
+		return $stmt->fetch(PDO::FETCH_ASSOC);
 	}
 
 	/**

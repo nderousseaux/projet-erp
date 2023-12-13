@@ -1,11 +1,9 @@
-function sendToCMIMutuelle(cmi, content) {
+function sendToCMIMutuelle(idLigne) {
 	return new Promise((resolve, reject) => {
-		// Champ à envoyer au back, pour indiquer la colonne à récupérer
+		// Champ à envoyer au back
 		let champPost = new FormData();
-		champPost.append("cmi", cmi);
-		champPost.append("content", content);
+		champPost.append("idLigne", idLigne);
 
-		// Récupère les dates des mesures et les données de la colonne demandée
 		fetch("../backend/sendToCMIMutuelle.php", {
 			method: "POST",
 			body: champPost
