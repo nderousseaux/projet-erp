@@ -1,0 +1,23 @@
+version: "3.8"
+
+services:
+  # mongo:
+  #   image: mongo:7.0.2
+  #   container_name: mongo
+  #   restart: always
+  #   command: ["--bind_ip_all", "--port", "27017", "--dbpath", "/db-data/"]
+  #   volumes:
+  #     - ./db-data/:/db-data/
+  #     - ./bdd-init.sh:/scripts/bdd-init.sh
+  #   ports: 
+  #     - 27017:27017
+
+  server:
+      image: webdevops/php-apache:8.2
+      container_name: server
+      restart: always
+      volumes:
+        - ./site/:/app/
+        - ./data/:/data/
+      ports:
+        - 8080:80
