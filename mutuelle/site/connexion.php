@@ -1,5 +1,6 @@
 <?php
-$userfile="../data/utilisateurs.txt"
+$userfile="../data/utilisateurs.txt";
+
 function erplogin($id,$mdp,$file)
 {
   $output = shell_exec('grep -oe "^.* '.$id.' '.$mdp.'$" '.$file.' | wc -l');
@@ -11,8 +12,8 @@ function erplogin($id,$mdp,$file)
 }
 
 #var_dump($argv);
-if(erplogin($_POST[user_id],$_POST[user_mdp],$userfile)){
-	echo "<script>location.href='../mutuelle.php?nuig=".$id."';</script>";
+if(erplogin($_POST["user_id"],$_POST["user_mdp"],$userfile)){
+	echo "<script>location.href='../mutuelle.php?nuig=".$_POST["user_id"]."';</script>";
 }else{
 	echo "t'as ecris de la merde recommence";
 };

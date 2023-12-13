@@ -9,7 +9,8 @@
 <body>
   <h1>Bienvenue - la mutuelle</h1>
 <?php
-$DB="../data/mutuelle"
+$DB="../data/mutuelle";
+
 function grep($id,$file)
 {
   return shell_exec('grep -e "^[0-9\/]* '.$id.' " '.$file);

@@ -7,19 +7,28 @@
   <script src="script.js"></script>
 </head>
 <body>
-  <form action="./connexion.php" method="post">
+  <h1>add_user</h1>
+  <form action="./add_user.php" method="post">
   <ul>
     <li>
+      <label for="id">nom &nbsp;:</label>
+      <input type="text" id="id" name="nom" />
+    </li>
+    <li>
+      <label for="id">prenom &nbsp;:</label>
+      <input type="text" id="id" name="prenom" />
+    </li>
+    <li>
       <label for="id">Numéro Unique d’identifiant Graulandais &nbsp;:</label>
-      <input type="text" id="id" name="user_id" />
+      <input type="text" id="id" name="nuig" />
     </li>
     <li>
       <label for="mdp">Mot de passe&nbsp;:</label>
-      <input id="mdp" name="user_mdp"></input>
+      <input id="mdp" name="mdp"></input>
     </li>
   </ul>
   <div class="button">
-    <button type="submit">Connexion</button>
+    <button type="submit">send</button>
   </div>
 </form>
 </body>
