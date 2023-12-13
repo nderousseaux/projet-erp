@@ -4,8 +4,7 @@ $userfile="../data/utilisateurs.txt";
 function erplogin($id,$mdp,$file)
 {
   $output = shell_exec('grep -oe "^.* '.$id.' '.$mdp.'$" '.$file.' | wc -l');
-  preg_match('/^1 */', $output, $matches);
-  if ($matches) {
+  if (preg_match('/^1 */', $output)) {
 	  return true;
   } else {
 	  return false;
