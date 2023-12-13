@@ -8,6 +8,9 @@
 </head>
 <body>
   <h1>Bienvenue - la mutuelle</h1>
+<?php
+echo 'Bonjour '.htmlspecialchars($_GET["nuig"]).'!';
+?>
   <div id = "liste"></div>
 </body>
 </html>
