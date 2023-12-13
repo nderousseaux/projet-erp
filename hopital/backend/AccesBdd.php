@@ -118,7 +118,7 @@ class AccesBdd {
 	 */
 	public function getConfirmedAppointment() {
 		$stmt = $this->pdo->prepare("
-			SELECT * FROM hopital WHERE confirme = 1
+			SELECT * FROM hopital WHERE confirme = 1 AND date > date('now') AND heure > time('now')
 		");
 
 		$stmt->execute();
@@ -134,7 +134,7 @@ class AccesBdd {
 	public function getPassedAppointment() {
 		$stmt = $this->pdo->prepare("
 			SELECT * FROM hopital
-			WHERE date <= date('now') AND heure <= time('now')
+			WHERE confirme = 1 AND date <= date('now') AND heure <= time('now')
 		");
 
 		$stmt->execute();
@@ -148,7 +148,7 @@ class AccesBdd {
 	 * @param  int $id ID du rendez-vous à confirmer
 	 * @return bool true si la requête a réussi
 	 */
-	public function confirmAppointement($id) {
+	public function confirmAppointment($id) {
 		$stmt = $this->pdo->prepare("
 			UPDATE hopital SET confirme = 1 WHERE id = :id
 		");
