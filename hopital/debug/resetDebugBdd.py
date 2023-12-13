@@ -10,48 +10,48 @@ cur = conn.cursor()
 cur.execute("""
 	CREATE TABLE IF NOT EXISTS hopital
 		(
-			id INTEGER PRIMARY KEY AUTOINCREMENT, date CHAR, heure CHAR,
-			examen CHAR, patient CHAR, metadata1 CHAR,
+			id INTEGER PRIMARY KEY AUTOINCREMENT, idGroland INTEGER, date CHAR,
+			heure CHAR, examen CHAR, patient CHAR, metadata1 CHAR,
 			metadata2 CHAR, mutuelle CHAR, montant FLOAT, confirme INT,
-			reglement FLOAT
+			reglement FLOAT, payeDMI INT DEFAULT 0, payeMutuelle INT DEFAULT 0
 		)
 """)
 cur.execute("DELETE FROM hopital WHERE date IS NOT NULL")
 
 cur.execute("""
-	INSERT INTO hopital (date, heure, examen, patient, metadata1, metadata2,
-		mutuelle, montant, confirme, reglement)
-	VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)""",
-	('2023-09-01', '09:05:00', 'X_SCAN_01', 'A1', 'Jambe', 'Méta', 'MNOP',
-		200, 1, 80))
+	INSERT INTO hopital (idGroland, date, heure, examen, patient, metadata1,
+		metadata2, mutuelle, montant, confirme, reglement)
+	VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)""",
+	('1234', '2023-09-01', '09:05:00', 'X_SCAN_01', 'A1', 'Jambe', 'Méta',
+		'MNOP', 200, 1, 80))
 
 cur.execute("""
-	INSERT INTO hopital (date, heure, examen, patient, metadata1, metadata2,
-		mutuelle, montant, confirme, reglement)
-	VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)""",
-	('2023-09-01', '09:19:57', 'X_SCAN_02', 'A2', 'Jambe', 'Rotule', 'MNOP',
-		200, 1, 80))
+	INSERT INTO hopital (idGroland, date, heure, examen, patient, metadata1,
+		metadata2, mutuelle, montant, confirme, reglement)
+	VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)""",
+	('1234', '2023-09-01', '09:19:57', 'X_SCAN_02', 'A2', 'Jambe', 'Rotule',
+		'MNOP', 200, 1, 80))
 
 cur.execute("""
-	INSERT INTO hopital (date, heure, examen, patient, metadata1, metadata2,
-		mutuelle, montant, confirme, reglement)
-	VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)""",
-	('2023-09-01', '09:05:00', 'X_SCAN_01', 'A1', 'Jambe', 'Méta', 'MNOP',
-		200, 0, 80))
+	INSERT INTO hopital (idGroland, date, heure, examen, patient, metadata1,
+		metadata2, mutuelle, montant, confirme, reglement)
+	VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)""",
+	('2345','2023-09-01', '09:05:00', 'X_SCAN_01', 'A1', 'Jambe', 'Méta',
+		'MNOP', 200, 0, 80))
 
 cur.execute("""
-	INSERT INTO hopital (date, heure, examen, patient, metadata1,metadata2,
-		mutuelle, montant, confirme, reglement)
-	VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)""",
-	('2023-09-01', '09:19:57', 'X_SCAN_02', 'A2', 'Jambe', 'Rotule', 'MNOP',
-		200, 0, 80))
+	INSERT INTO hopital (idGroland, date, heure, examen, patient, metadata1,
+		metadata2, mutuelle, montant, confirme, reglement)
+	VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)""",
+	('4567','2023-09-01', '09:19:57', 'X_SCAN_02', 'A2', 'Jambe', 'Rotule',
+		'MNOP', 200, 0, 80))
 
 
 cur.execute("""
-	INSERT INTO hopital (date, heure, examen, patient, metadata1, metadata2,
-		mutuelle)
-	VALUES (?, ?, ?, ?, ?, ?, ?)""",
-	('2023-09-01', '09:24:56', 'X_CONS_01', 'A3', 'Bras', 'Lorem-ipsum',
+	INSERT INTO hopital (idGroland, date, heure, examen, patient, metadata1,
+		metadata2, mutuelle)
+	VALUES (?, ?, ?, ?, ?, ?, ?, ?)""",
+	('5678', '2023-09-01', '09:24:56', 'X_CONS_01', 'A3', 'Bras', 'Lorem-ipsum',
 		'IJKJ'))
 
 
