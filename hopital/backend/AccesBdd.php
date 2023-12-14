@@ -25,6 +25,7 @@ class AccesBdd {
 			payeMutuelle BOOLEAN DEFAULT 0
 		)");
 
+		// Création de la table du stockage des fichiers si elle n'existe pas
 		$this->pdo->exec("CREATE TABLE IF NOT EXISTS files (
 			id INTEGER PRIMARY KEY AUTOINCREMENT,
 			name TEXT,
@@ -202,6 +203,12 @@ class AccesBdd {
 		return $stmt->fetch(PDO::FETCH_ASSOC);
 	}
 
+	/**
+	 * Ajoute un fichier pour un certain rendez-vous dans la BDD de fichiers
+	 * @param  int $id ID du rendez-vous
+	 * @param  string $filename Nom du fichier
+	 * @param  string $content Contenu du fichier@
+	 */
 	public function sendFile($id, $filename, $content) {
 		// Le decodoage est pas utile, plus jolie de laisser encoder dans la base de données
 		$contenu = base64_decode($content);
@@ -216,6 +223,11 @@ class AccesBdd {
 		$stmt->execute();
 	}
 
+	/**
+	 * Récupère les fichiers d'un rendez-vous
+	 * @param  int $id ID du rendez-vous
+	 * @return array Tableau associatif contenant les fichiers
+	 */
 	public function getFiles($id) {
 		$stmt = $this->pdo->prepare("
 			SELECT id, name FROM files WHERE related_to = :id

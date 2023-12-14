@@ -82,7 +82,7 @@ section > div {
 	background-color: rgba(255, 255, 255, 0.7);
 	-webkit-backdrop-filter: blur(10px);
 	backdrop-filter: blur(10px);
-	min-width: 95%;
+	min-width: 100%;
 }
 
 		/* Tableaux */
@@ -162,7 +162,7 @@ label {
 #passes > .liste {
 	overflow: hidden;
 	align-items: initial;
-	min-width: 90%;
+	min-width: 95%;
 	padding-left: 5%;
 	max-height: 0;
 	transition: max-height 1s ease;
@@ -183,17 +183,6 @@ label {
 		/* Divisions dans section (prévus, confirmés, passés) */
 	section > div {
 		margin-bottom: 30px;
-	}
-
-			/* Tableaux */
-	#prevus > div,
-	#confirmes > div,
-	#passes > div {
-		min-width: 100%;
-	}
-
-	#passes > .liste {
-		min-width: 95%;
 	}
 
 	.grille {

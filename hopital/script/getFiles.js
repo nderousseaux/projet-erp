@@ -1,10 +1,10 @@
 function getFiles(id) {
 	return new Promise((resolve, reject) => {
-		// Champ à envoyer au back, pour indiquer la colonne à récupérer
+		// Envoi une requete POST avec l'id du rendez-vous
 		let champPost = new FormData();
 		champPost.append("id", id);
 
-		// Récupère les dates des mesures et les données de la colonne demandée
+		// Recupération des lignes dans la BDD de fichiers associées au rendez-vous
 		fetch("../backend/getFiles.php", {
 			method: "POST",
 			body: champPost
