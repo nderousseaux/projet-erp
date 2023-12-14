@@ -14,7 +14,7 @@ const getters = {
 
 const actions = {
 	async login({ commit }, { username, password }) {
-		commit('setLoading', true);
+		commit('setLoadingLogin', true);
 		try {
 			const response = await api.login.login(username, password);
 			console.log(response);
@@ -23,7 +23,7 @@ const actions = {
 		} catch (error) {
 			commit('setError', error.message);
 		}
-		commit('setLoading', false);
+		commit('setLoadingLogin', false);
 	},
 
 	async logout({ commit }) {
@@ -31,20 +31,18 @@ const actions = {
 		commit('setError', "");
 	},
 
-	async signin({ commit }, { name,
+	async signin({ commit }, {
+		id,
+		name,
 		firstname,
-		address,
-		timestamp,
-		placeBirth,
 		password,
 		passwordVerif }) {
-		commit('setLoading', true);
+		commit('setLoadingLogin', true);
 		try {
-			const response = await api.login.signin(name,
+			const response = await api.login.signin(
+				id,
+				name,
 				firstname,
-				address,
-				timestamp,
-				placeBirth,
 				password,
 				passwordVerif);
 			console.log(response);
@@ -52,13 +50,13 @@ const actions = {
 		} catch (error) {
 			commit('setError', error.message);
 		}
-		commit('setLoading', false);
+		commit('setLoadingLogin', false);
 	},
 };
 
 const mutations = {
 	setToken: (state, token) => (state.token = token),
-	setLoading: (state, loading) => (state.loading = loading),
+	setLoadingLogin: (state, loading) => (state.loading = loading),
 	setError: (state, error) => (state.error = error),
 };
 

@@ -4,6 +4,14 @@
 		title="Inscription"
 	>
 		<n-form>
+			<n-form-item label="Identifiant">
+				<n-input
+					style="text-align: left;"
+					:status="error ? 'error' : 'default'"
+					placeholder="11111111"
+					v-model:value="id"
+				/>
+			</n-form-item>
 			<n-form-item label="Nom">
 				<n-input
 					style="text-align: left;"
@@ -18,30 +26,6 @@
 					:status="error ? 'error' : 'default'"
 					placeholder="Dupont"
 					v-model:value="name"
-				/>
-			</n-form-item>
-			<n-form-item label="Adresse">
-				<n-input
-					style="text-align: left;"
-					:status="error ? 'error' : 'default'"
-					placeholder="15 rue de la Paix 67000 Strasbourg"
-					v-model:value="address"
-				/>
-			</n-form-item>
-			<n-form-item label="Date de naissance">
-				<n-date-picker
-					style="text-align: left;"
-					:status="error ? 'error' : 'default'"
-					placeholder="01/01/1970"
-					v-model:value="timestamp" type="date"
-				/>
-			</n-form-item>
-			<n-form-item label="Lieu de naissance">
-				<n-input
-					style="text-align: left;"
-					:status="error ? 'error' : 'default'"
-					placeholder="Strasbourg"
-					v-model:value="placeBirth"
 				/>
 			</n-form-item>
 			<n-form-item label="Mot de passe">
@@ -95,7 +79,6 @@ import {
 	NFormItem,
 	NInput,
 	NButton,
-	NDatePicker,
 } from 'naive-ui'
 
 export default {
@@ -106,14 +89,11 @@ export default {
 		NFormItem,
 		NInput,
 		NButton,
-		NDatePicker,
 	},
 	data: () => ({
+		id: '',
 		name: '',
 		firstname: '',
-		address: '',
-		timestamp: null,
-		placeBirth: '',
 		password: '',
 		passwordVerif: '',
 	}),
@@ -135,15 +115,12 @@ export default {
 
 		async clickLogin() {
 			await this.signin({
+				id: this.id,
 				name: this.name,
 				firstname: this.firstname,
-				address: this.address,
-				timestamp: this.timestamp,
-				placeBirth: this.placeBirth,
 				password: this.password,
 				passwordVerif: this.passwordVerif,
 			});
-			console.log(this.error)
 			if (!this.error) {
 				this.$router.push('/login');
 			}
