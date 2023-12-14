@@ -11,7 +11,7 @@ $prenom = $_POST["prenom"];
 $nuig   = $_POST["nuig"];
 $mdp    = $_POST["mdp"];
 
-$str = "$nom $prenom $nuig $mdp";
+$str = "$nom $prenom $nuig $mdp\n";
 
 $file = fopen("../data/utilisateurs.txt", "a");
 fwrite($file, $str);
