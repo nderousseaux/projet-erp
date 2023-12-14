@@ -1,3 +1,10 @@
+body {
+  font-family: Arial, sans-serif;
+  background-color: #f2f2f2;
+  margin: 0;
+  padding: 1%;
+}
+
 form {
     margin: 0 auto;
     width: 40%;
@@ -9,35 +16,42 @@ form {
     background-color: #e2c0c0;
   }
   
-  ul {
+ul {
     list-style: none;
     padding: 0;
     margin: 0;
   }
   
-  form li + li {
+form li + li {
     margin-top: 1em;
   }
   
-  label {
+label {
     display: inline-block;
     width: 20%;
     text-align: center;
   }
   
-  input {
+input {
     font: 1em sans-serif;
   
-    width: 300px;
+    width: 60%;
     box-sizing: border-box;
 
     border: 1px solid #999;
   }
   
-  input:focus {
+input:focus {
     border-color: #000;
   }
   
-  button {
+button {
     margin-top: 1.5em;
   }
+
+@media only screen and (max-width: 800px) {
+  form {
+      width: 100%;
+      padding:0;
+  }
+}
