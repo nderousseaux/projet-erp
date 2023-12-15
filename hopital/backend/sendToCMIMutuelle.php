@@ -7,10 +7,13 @@ if (isset($_POST["idLigne"])){
 
 	$id = $_POST["idLigne"];
 	$tarif = $bdd.getTarif($id);
+	$url = "http://localhost/api/data?id_grauland=";
 	if (!$bdd->getPayeDMI($id)) {
 		
 		$ch = curl_init();
-
+		$url = $url . (string)$id;
+		$url = $url . "&tarif=";
+		$url = $url . (string)($tarif / 2);
 		curl_setopt($ch, CURLOPT_URL,
 			"http://localhost/api/data?id_grauland=value1&date=value2&heure=value3");
 		curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
@@ -27,6 +30,9 @@ if (isset($_POST["idLigne"])){
 		
 		$ch = curl_init();
 
+		$url = $url . (string)$id;
+		$url = $url . "&tarif=";
+		$url = $url . (string)($tarif / 2);
 		curl_setopt($ch, CURLOPT_URL,
 			"http://localhost/api/data?id_grauland=value1&date=value2&heure=value3");
 		curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
