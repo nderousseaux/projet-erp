@@ -15,11 +15,6 @@ show_files = function(e) {
 	if (grille.nextSibling != null) { // si on est pas au dernier rdv de la liste
 		if (grille.nextSibling.classList.length == 0) { // si la div suivante n'est pas une div de liste de fichiers ou une div de dépôt
 			// Création de la div de dépôt de fichier
-			/*
-			var new_grille = grille.cloneNode(true);
-			new_grille.innerHTML = "<div class=\"depot\" ondrop=\"drop(event)\"><p>Déposer le fichier de résultat de l'examen</p></div>";
-			new_grille.classList.add("listFiles");
-			*/
 			let new_grille = createDivDepot();
 			div.insertBefore(new_grille, grille.nextSibling);
 			setTimeout(function() {
