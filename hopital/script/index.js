@@ -21,6 +21,8 @@ show_files = function(e) {
 				new_grille.style.maxHeight = "60vh";
 			}, 50);
 		} else { // Sinon on supprime la/les divs
+			if (grille.nextSibling.style.maxHeight == "0px")
+				return;
 			let temp = grille.nextSibling.nextSibling;
 			// Si il y a une div de liste de fichiers, on supprime les deux divs
 			if (temp && temp.classList.length) {
