@@ -47,7 +47,10 @@ function drop(event) {
 	let id = event.target;
 	if (id.tagName != "DIV")
 		id = id.parentNode;
-	id = id.parentNode.previousSibling.childNodes[0].childNodes[0].innerHTML;
+	id = id.parentNode.previousSibling;
+	if (id.className == "liste")
+		id = id.previousSibling;
+	id = id.childNodes[0].childNodes[0].innerHTML;
 	console.log(id);
 
 	let file = event.dataTransfer.files[0];
