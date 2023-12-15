@@ -238,6 +238,14 @@ class AccesBdd {
 		return $stmt->fetchAll(PDO::FETCH_ASSOC);
 	}
 
+	public function deleteFile($id) {
+		$stmt = $this->pdo->prepare("
+			DELETE FROM files WHERE id = :id
+		");
+		$stmt->bindParam(":id", $id);
+		$stmt->execute();
+	}
+
 	public function sendToCMIMutuelle($cmi, $content) {
 		if ($cmi == "cmi")
 		{
