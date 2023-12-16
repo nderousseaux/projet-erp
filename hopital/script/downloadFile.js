@@ -16,10 +16,16 @@ prepareDownloadFile = function(e) {
 		// donnees sous forme : data:application/pdf;base64,...
 		console.log(donnees);
 		// On supprime le début pour ne garder que le contenu
-		let content = donnees[0].content.split(",")[1];
+		var content = donnees[0].content.split(",")[1];
+		content = atob(content);
+		// On récupère les caractères Unicode
+		let tab = new Array(content.length);
+		for (let i = 0; i < content.length; i++)
+			tab[i] = content.charCodeAt(i);
+		content = new Uint8Array(tab);
 		// On obtient le type MIME
 		let type = donnees[0].content.split(";")[0].split(":")[1];
-		let blob = new Blob([atob(content)], { type: type });
+		let blob = new Blob([content], { type: type });
 		let link = document.createElement('a');
 		link.href = window.URL.createObjectURL(blob);
 		link.download = filename;
