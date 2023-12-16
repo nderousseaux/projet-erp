@@ -211,7 +211,7 @@ class AccesBdd {
 	 */
 	public function sendFile($id, $filename, $content) {
 		// Le decodoage est pas utile, plus jolie de laisser encoder dans la base de données
-		$contenu = base64_decode($content);
+		// $contenu = base64_decode($content);
 
 		$stmt = $this->pdo->prepare("
 			INSERT INTO files (name, related_to, content) VALUES (:filename, :id, :content)
@@ -244,6 +244,16 @@ class AccesBdd {
 		");
 		$stmt->bindParam(":id", $id);
 		$stmt->execute();
+	}
+
+	public function downloadFile($id) {
+		$stmt = $this->pdo->prepare("
+			SELECT content FROM files WHERE id = :id
+		");
+		$stmt->bindParam(":id", $id);
+		$stmt->execute();
+
+		return $stmt->fetchAll(PDO::FETCH_ASSOC);
 	}
 
 	public function sendToCMIMutuelle($cmi, $content) {

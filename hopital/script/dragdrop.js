@@ -58,7 +58,7 @@ function drop(event) {
 	let reader = new FileReader();
 	reader.onload = function(e) {
 		// Récupère le contenu du fichier
-		let content = e.target.result.split(',')[1];
+		let content = e.target.result;
 		sendFile(id,filename,content);
 	}
 	reader.readAsDataURL(file);

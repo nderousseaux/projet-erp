@@ -75,6 +75,7 @@ show_files = function(e) {
 			liste.style.maxHeight = "60vh";
 		}, 50);
 		refreshDeleteFilesEvent();
+		refreshDownloadFilesEvent();
 	});
 	// Les setTimeout sont là pour permettre l'animation des différentes divs
 }
