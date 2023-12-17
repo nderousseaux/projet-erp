@@ -18,7 +18,6 @@ class AccesBdd {
 			patient TEXT,
 			metadata1 TEXT,
 			metadata2 TEXT,
-			mutuelle TEXT,
 			montant INTEGER,
 			confirme BOOLEAN DEFAULT 0,
 			payeDMI BOOLEAN DEFAULT 0,
@@ -35,54 +34,17 @@ class AccesBdd {
 		)");
 	}
 
-	public function newAppointment(
-		$idGrauland, $dateHeure, $examen, $patient, $metadata1, $metadata2,
-		$mutuelle, $montant
-	) {
-		// Récupère les données du formulaire
-		$idGrauland = htmlspecialchars($idGrauland);
-		$dateHeure = htmlspecialchars($dateHeure);
-		$examen = htmlspecialchars($examen);
-		$patient = htmlspecialchars($patient);
-		$metadata1 = htmlspecialchars($metadata1);
-		$metadata2 = htmlspecialchars($metadata2);
-		$mutuelle = htmlspecialchars($mutuelle);
-		$montant = htmlspecialchars($montant);
 
-
-		$dateFormatee = DateTime::createFromFormat("Y-m-d\TH:i", $dateHeure);
-		$dateHeure = $dateFormatee->format("Y-m-d H:i");
-
-		// Ajoute le rendez-vous à la base de données
-		$stmt = $this->pdo->prepare("
-			INSERT INTO hopital (idGrauland, dateHeure, examen, patient,
-				metadata1, metadata2, mutuelle, montant)
-			VALUES (:idGrauland, :dateHeure, :examen, :patient, :metadata1,
-				:metadata2, :mutuelle, :montant)
-		");
-
-		$stmt->bindParam(":idGrauland", $idGrauland);
-		$stmt->bindParam(":dateHeure", $dateHeure);
-		$stmt->bindParam(":examen", $examen);
-		$stmt->bindParam(":patient", $patient);
-		$stmt->bindParam(":metadata1", $metadata1);
-		$stmt->bindParam(":metadata2", $metadata2);
-		$stmt->bindParam(":mutuelle", $mutuelle);
-		$stmt->bindParam(":montant", $montant);
-		$stmt->execute();
-
-		// Récupère l'id du rendez-vous
-		$id = $this->pdo->lastInsertId();
-		return $id;
-	}
-
-
+	/********************************* Getter *********************************/
 	/**
-	 * Récupère metadata1
+	 * Récupère l'id Grauland du patient pour un certain rendez-vous
+	 *
+	 * @param  int $id ID du rendez-vous
+	 * @return int ID Grauland du patient
 	 */
-	public function getMetadata2($id) {
+	public function getIdGrauland($id) {
 		$stmt = $this->pdo->prepare("
-			SELECT metadata2 FROM hopital WHERE id = :id
+			SELECT idGrauland FROM hopital WHERE id = :id
 		");
 		$stmt->bindParam(":id", $id);
 		$stmt->execute();
@@ -91,20 +53,10 @@ class AccesBdd {
 	}
 
 	/**
-	 * Récupère le montant de l'acte
-	 */
-	public function getMontant($id) {
-		$stmt = $this->pdo->prepare("
-			SELECT montant FROM hopital WHERE id = :id
-		");
-		$stmt->bindParam(":id", $id);
-		$stmt->execute();
-
-		return $stmt->fetch(PDO::FETCH_ASSOC);
-	}
-
-	/**
-	 * Récupère la date et l'heure du rendez-vous
+	 * Récupère la date et l'heure d'un certain rendez-vous
+	 *
+	 * @param  int $id ID du rendez-vous
+	 * @return string Date et heure de l'acte
 	 */
 	public function getDate($id) {
 		$stmt = $this->pdo->prepare("
@@ -118,6 +70,9 @@ class AccesBdd {
 
 	/**
 	 * Récupère le type d'examen
+	 *
+	 * @param  int $id ID du rendez-vous
+	 * @return string Type d'examen de l'acte
 	 */
 	public function getExamen($id) {
 		$stmt = $this->pdo->prepare("
@@ -130,11 +85,14 @@ class AccesBdd {
 	}
 
 	/**
-	 * Récupère l'id Grauland du patient
+	 * Récupère metadata2 pour un certain rendez-vous
+	 *
+	 * @param  int $id ID du rendez-vous
+	 * @return string metadata2 commentaire de l'acte
 	 */
-	public function getIdGrauland($id) {
+	public function getMetadata2($id) {
 		$stmt = $this->pdo->prepare("
-			SELECT idGrauland FROM hopital WHERE id = :id
+			SELECT metadata2 FROM hopital WHERE id = :id
 		");
 		$stmt->bindParam(":id", $id);
 		$stmt->execute();
@@ -143,7 +101,26 @@ class AccesBdd {
 	}
 
 	/**
-	 * Réupère si la DMI a payé
+	 * Récupère le montant d'un certain rendez-vous
+	 *
+	 * @param  int $id ID du rendez-vous
+	 * @return int Montant de l'acte
+	 */
+	public function getMontant($id) {
+		$stmt = $this->pdo->prepare("
+			SELECT montant FROM hopital WHERE id = :id
+		");
+		$stmt->bindParam(":id", $id);
+		$stmt->execute();
+
+		return $stmt->fetch(PDO::FETCH_ASSOC);
+	}
+
+	/**
+	 * Réupère si la DMI a payé pour un certain rendez-vous
+	 *
+	 * @param  int $id ID du rendez-vous
+	 * @return bool true si la DMI a payé
 	 */
 	public function getPayeDMI($id) {
 		$stmt = $this->pdo->prepare("
@@ -156,7 +133,10 @@ class AccesBdd {
 	}
 
 	/**
-	 * Réupère si la mutuelle a payé
+	 * Réupère si la mutuelle a payé pour un certain rendez-vous
+	 *
+	 * @param  int $id ID du rendez-vous
+	 * @return bool true si la mutuelle a payé
 	 */
 	public function getPayeMutuelle($id) {
 		$stmt = $this->pdo->prepare("
@@ -168,8 +148,12 @@ class AccesBdd {
 		return $stmt->fetch(PDO::FETCH_ASSOC);
 	}
 
+
+	/********************************* Setter *********************************/
 	/**
-	 * Indique que la DMI a payé
+	 * Indique que la DMI a payé pour un certain rendez-vous
+	 *
+	 * @param int $id ID du rendez-vous
 	 */
 	public function setPayeDMI($id) {
 		$stmt = $this->pdo->prepare("
@@ -180,7 +164,9 @@ class AccesBdd {
 	}
 
 	/**
-	 * Indique que la mutuelle a payé
+	 * Indique que la mutuelle a payé pour un certain rendez-vous
+	 *
+	 * @param int $id ID du rendez-vous
 	 */
 	public function setPayeMutuelle($id) {
 		$stmt = $this->pdo->prepare("
@@ -190,22 +176,62 @@ class AccesBdd {
 		$stmt->execute();
 	}
 
+
+	/****************************** Rendez-vous *******************************/
 	/**
-	 * Récupère le tarif de l'acte
+	 * 	Ajoute un rendez-vous à la base de données
+	 *
+	 * @param  int $idGrauland ID Grauland du patient
+	 * @param  string $dateHeure Date et heure du rendez-vous
+	 * @param  string $examen Type d'examen
+	 * @param  string $patient Nom du patient
+	 * @param  string $metadata1 metadata1
+	 * @param  string $metadata2 metadata2
+	 * @param  int $montant Montant de l'acte
 	 */
-	public function getTarif($id) {
+	public function newAppointment(
+		$idGrauland, $dateHeure, $examen, $patient, $metadata1, $metadata2,
+		$montant
+	) {
+		// Récupère les données du formulaire
+		$idGrauland = htmlspecialchars($idGrauland);
+		$dateHeure = htmlspecialchars($dateHeure);
+		$examen = htmlspecialchars($examen);
+		$patient = htmlspecialchars($patient);
+		$metadata1 = htmlspecialchars($metadata1);
+		$metadata2 = htmlspecialchars($metadata2);
+		$montant = htmlspecialchars($montant);
+
+		// Formate la date et l'heure
+		$dateFormatee = DateTime::createFromFormat("Y-m-d\TH:i", $dateHeure);
+		$dateHeure = $dateFormatee->format("Y-m-d H:i");
+
+		// Ajoute le rendez-vous à la base de données
 		$stmt = $this->pdo->prepare("
-			SELECT montant FROM hopital WHERE id = :id
+			INSERT INTO hopital (idGrauland, dateHeure, examen, patient,
+				metadata1, metadata2, montant)
+			VALUES (:idGrauland, :dateHeure, :examen, :patient, :metadata1,
+				:metadata2, :montant)
 		");
-		$stmt->bindParam(":id", $id);
+
+		$stmt->bindParam(":idGrauland", $idGrauland);
+		$stmt->bindParam(":dateHeure", $dateHeure);
+		$stmt->bindParam(":examen", $examen);
+		$stmt->bindParam(":patient", $patient);
+		$stmt->bindParam(":metadata1", $metadata1);
+		$stmt->bindParam(":metadata2", $metadata2);
+		$stmt->bindParam(":montant", $montant);
 		$stmt->execute();
 
-		return $stmt->fetch(PDO::FETCH_ASSOC);
+		// Récupère l'id du rendez-vous
+		$id = $this->pdo->lastInsertId();
+		return $id;
 	}
 
 	/**
 	 * Récupère les rendez-vous prévus (confirmé à 0 ou null)
-	 * @return array
+	 *
+	 * @return array Tableau associatif contenant les rendez-vous prévus
 	 */
 	public function getScheduledAppointment() {
 		$stmt = $this->pdo->prepare("
@@ -220,7 +246,8 @@ class AccesBdd {
 
 	/**
 	 * Récupère les rendez-vous confirmés (confirmé à 1)
-	 * @return array
+	 *
+	 * @return array Tableau associatif contenant les rendez-vous confirmés
 	 */
 	public function getConfirmedAppointment() {
 		$stmt = $this->pdo->prepare("
@@ -236,7 +263,8 @@ class AccesBdd {
 
 	/**
 	 * Récupère les rendez-vous passés (date et heure passés)
-	 * @return array
+	 *
+	 * @return array Tableau associatif contenant les rendez-vous passés
 	 */
 	public function getPassedAppointment() {
 		$stmt = $this->pdo->prepare("
@@ -252,6 +280,7 @@ class AccesBdd {
 
 	/**
 	 * Confirme un rendez-vous
+	 *
 	 * @param  int $id ID du rendez-vous à confirmer
 	 * @return bool true si la requête a réussi
 	 */
@@ -273,18 +302,19 @@ class AccesBdd {
 		return $stmt->fetch(PDO::FETCH_ASSOC);
 	}
 
+
+	/*************************** Gestion de fichier ***************************/
 	/**
 	 * Ajoute un fichier pour un certain rendez-vous dans la BDD de fichiers
+	 *
 	 * @param  int $id ID du rendez-vous
 	 * @param  string $filename Nom du fichier
 	 * @param  string $content Contenu du fichier@
 	 */
 	public function sendFile($id, $filename, $content) {
-		// Le decodoage est pas utile, plus jolie de laisser encoder dans la base de données
-		// $contenu = base64_decode($content);
-
 		$stmt = $this->pdo->prepare("
-			INSERT INTO files (name, related_to, content) VALUES (:filename, :id, :content)
+			INSERT INTO files (name, related_to, content)
+			VALUES (:filename, :id, :content)
 		");
 
 		$stmt->bindParam(":filename", $filename);
@@ -295,6 +325,7 @@ class AccesBdd {
 
 	/**
 	 * Récupère les fichiers d'un rendez-vous
+	 *
 	 * @param  int $id ID du rendez-vous
 	 * @return array Tableau associatif contenant les fichiers
 	 */
@@ -308,6 +339,11 @@ class AccesBdd {
 		return $stmt->fetchAll(PDO::FETCH_ASSOC);
 	}
 
+	/**
+	 * Supprime un fichier en fonction de l'id dans la BDD de fichiers
+	 *
+	 * @param  int $id dans la BDD de fichiers
+	 */
 	public function deleteFile($id) {
 		$stmt = $this->pdo->prepare("
 			DELETE FROM files WHERE id = :id
@@ -316,6 +352,11 @@ class AccesBdd {
 		$stmt->execute();
 	}
 
+	/**
+	 * Récupère le contenu d'un fichier
+	 *
+	 * @param  int $id dans la BDD de fichiers
+	 */
 	public function downloadFile($id) {
 		$stmt = $this->pdo->prepare("
 			SELECT content FROM files WHERE id = :id
