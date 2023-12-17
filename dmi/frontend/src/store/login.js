@@ -1,15 +1,17 @@
 import api from '@/api';
 
 const state = () => ({
-	token: "",
+	login: false,
 	error: "",
 	loading: false,
+	id: "",
 });
 
 const getters = {
-	getToken: (state) => state.token,
+	getToken: (state) => state.login,
 	getLoadingLogin: (state) => state.loading,
 	getErrorLoginMessage: (state) => state.error,
+	getId: (state) => state.id,
 };
 
 const actions = {
@@ -17,8 +19,10 @@ const actions = {
 		commit('setLoadingLogin', true);
 		try {
 			const response = await api.login.login(username, password);
-			console.log(response);
-			commit('setToken', response);
+			if (response.data == 1)
+				throw new Error(response, "Login failed");
+			commit('setLogin', true);
+			commit('setId', username);
 			commit('setError', "");
 		} catch (error) {
 			commit('setError', error.message);
@@ -27,7 +31,8 @@ const actions = {
 	},
 
 	async logout({ commit }) {
-		commit('setToken', "");
+		commit('setLogin', false);
+		commit('setId', "");
 		commit('setError', "");
 	},
 
@@ -39,13 +44,16 @@ const actions = {
 		passwordVerif }) {
 		commit('setLoadingLogin', true);
 		try {
+			if (password != passwordVerif)
+				throw new Error("Passwords don't match");
+
 			const response = await api.login.signin(
 				id,
 				name,
 				firstname,
-				password,
-				passwordVerif);
-			console.log(response);
+				password,);
+			if (response.data[0] != 0)
+				throw new Error(response, "Signin failed");
 			commit('setError', "");
 		} catch (error) {
 			commit('setError', error.message);
@@ -55,7 +63,8 @@ const actions = {
 };
 
 const mutations = {
-	setToken: (state, token) => (state.token = token),
+	setId: (state, id) => (state.id = id),
+	setLogin: (state, token) => (state.login = token),
 	setLoadingLogin: (state, loading) => (state.loading = loading),
 	setError: (state, error) => (state.error = error),
 };

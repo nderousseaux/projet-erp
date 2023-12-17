@@ -1,4 +1,5 @@
 .DS_Store
+.idea
 backend/bdd/
 hopital/debug/hopital.db
 Sujet.pdf

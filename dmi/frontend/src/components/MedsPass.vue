@@ -21,10 +21,10 @@
 
 
 <script>
-import { h } from 'vue'
+// import { h } from 'vue'
 import { mapGetters, mapActions} from 'vuex';
 
-import { NDataTable, NH2, NText, NSpin, NButton} from 'naive-ui'
+import { NDataTable, NH2, NText, NSpin } from 'naive-ui'
 
 
 export default {
@@ -72,57 +72,57 @@ export default {
 					title: 'Reste à payer',
 					key: 'topay',
 				},
-				{
-					title: 'Résultat',
-					key: 'results',
-					render (row) {
-						return h(
-							NButton,
-							{
-								size: 'small',
-								onClick: () => {
-									window.open(row.results);
-								}
-							},
-							{ default: () => 'Ouvrir le pdf' }
-						)
-					}
-				}
+				// {
+				// 	title: 'Résultat',
+				// 	key: 'results',
+				// 	render (row) {
+				// 		return h(
+				// 			NButton,
+				// 			{
+				// 				size: 'small',
+				// 				onClick: () => {
+				// 					window.open(row.results);
+				// 				}
+				// 			},
+				// 			{ default: () => 'Ouvrir le pdf' }
+				// 		)
+				// 	}
+				// }
 			],
 		}
 	},
 
 	mounted() {
-		this.getMeds();
+		this.getMeds(this.id)
 	},
 
 	computed: {
 		...mapGetters({
 			medsData: 'getMedsPass',
 			loading: 'getLoading',
+			id: 'getId',
 		}),
 
 		meds() {
-			// € devant les nombres
-			const formatter = new Intl.NumberFormat('fr-FR', {
-				style: 'currency',
-				currency: 'EUR',
+	
+			if (!this.medsData) {
+				return [];
+			}
+			console.log(this.medsData);
+			this.medsData.forEach((med) => {
+				med.d = med.date.split(' ')[0];
+				med.time = med.date.split(' ')[1];
+				med.date = med.d;
+				med.place = med.lieu;
+				med.intervention = med.type;
+				// On supprime les deux derniers caractères
+				med.fees = med.prix.slice(0, -3) + '€';
+				med.fees = med.fees.replace(',', '');
+				med.topay = med.restant.slice(0, -3) + '€';
+				med.remboursement = parseInt(med.fees) - parseInt(med.topay) + '€';
 			});
 
-			return this.medsData.map((med) => {
-				return {
-					date: med.date,
-					time: med.time,
-					place: med.place,
-					intervention: med.intervention,
-					notes: med.notes,
-					fees: formatter.format(med.fees),
-					remboursement: formatter.format(med.remboursement),
-					topay: formatter.format(med.topay),
-					confirm: med.confirm ? 'Oui' : 'Non',
-					results: med.results,
-				}
-			})
+			return this.medsData;
 		},
 	},
 

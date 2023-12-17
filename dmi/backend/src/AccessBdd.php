@@ -1,4 +1,7 @@
 <?php
+header("Access-Control-Allow-Origin: *");
+header("Access-Control-Allow-Headers: *");
+
 // Classe permettant les opérations avec la bdd
 class AccessBdd {
 	private $pdo;

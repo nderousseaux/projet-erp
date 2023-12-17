@@ -76,6 +76,20 @@ class AccesBdd {
 		return $id;
 	}
 
+
+	/**
+	 * Récupère metadata1
+	 */
+	public function getMetadata2($id) {
+		$stmt = $this->pdo->prepare("
+			SELECT metadata2 FROM hopital WHERE id = :id
+		");
+		$stmt->bindParam(":id", $id);
+		$stmt->execute();
+
+		return $stmt->fetch(PDO::FETCH_ASSOC);
+	}
+
 	/**
 	 * Récupère le montant de l'acte
 	 */
@@ -310,16 +324,5 @@ class AccesBdd {
 		$stmt->execute();
 
 		return $stmt->fetchAll(PDO::FETCH_ASSOC);
-	}
-
-	public function sendToCMIMutuelle($cmi, $content) {
-		if ($cmi == "cmi")
-		{
-
-		}
-		else
-		{
-			
-		}
 	}
 }

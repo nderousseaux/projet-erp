@@ -127,7 +127,8 @@ function ajoutRdv() {
 			body: formData
 		})
 		.then(idExam => {
-			sendAppCMIMutuelle(idExam);
+			sendAppCMIMutuelle(idExam, "dmi");
+			sendAppCMIMutuelle(idExam, "mutuelle");
 		})
 		.catch(error => {
 			console.error(error);

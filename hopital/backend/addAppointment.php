@@ -5,7 +5,7 @@ $bdd = new AccesBdd();
 
 // Vérifie si le formulaire est vide
 if (
-	is_numeric($_POST["idGroland"]) &&
+	is_numeric($_POST["idGrauland"]) &&
 	is_string($_POST["dateHeure"]) &&
 	is_string($_POST["examen"]) &&
 	is_string($_POST["patient"]) &&

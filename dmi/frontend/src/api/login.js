@@ -1,43 +1,22 @@
-// ** This file is a debugging tool for the front end. 
-// It simulates a backend API that returns promises 
-// with a delay of 1 second.
-
-let lo = {
-	username: "admin",
-	password: "admin"
-}
+import axios from 'axios';
 
 export default {
 	login: (username, password) => {
-		return new Promise((resolve, reject) => {
-			setTimeout(() => {
-				if (username == lo.username && password == lo.password)
-					resolve({token: "1234567890"});
-				else
-					reject("Wrong username or password");
-			}, 1000);
-		});
+		let formData = new FormData();
+		formData.append('id', username);
+		formData.append('password', password);
+		return axios.post('loginuser.php', formData)
 	},
 	signin: (
 		id,
 		name,
 		firstname,
-		password,
-		passwordVerif) => {
-		return new Promise((resolve, reject) => {
-			setTimeout(() => {
-				if (password == passwordVerif &&
-					// Aucun champ null
-					id != "" &&
-					name != "" &&
-					firstname != "" &&
-					password != "" &&
-					passwordVerif != "")
-					
-					resolve("User created");
-				else
-					reject("Passwords don't match");
-			}, 1000);
-		});
-	},
+		password) => {
+			let formData = new FormData();
+			formData.append('idGroland', id);
+			formData.append('nom', name);
+			formData.append('prenom', firstname);
+			formData.append('mdp', password);
+			return axios.post('createdmi.php', formData);
+		},
 }
