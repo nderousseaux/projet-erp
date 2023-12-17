@@ -37,7 +37,7 @@ else {
 
 // Récupère les informations
 $idGrauland = $bdd->getIdGrauland($_POST["idExam"]);
-$lieu = "Strasbourg";
+$lieu = $bdd->getLieu($id);
 $examen = $bdd->getExamen($id);
 $date = $bdd->getDate($id);
 $montant = $bdd->getMontant($id);
@@ -52,8 +52,6 @@ $url = $url . "&intervention=" . urlencode($examen);
 $url = $url . "&date=" . urlencode($date);
 $url = $url . "&total=" . urlencode($montant);
 $url = $url . "&id_acte=" . urlencode($_POST["idExam"]);
-
-echo $url;
 
 // Ajoute le commentaire si c'est une mutuelle
 if ($entite === "mutuelle") {

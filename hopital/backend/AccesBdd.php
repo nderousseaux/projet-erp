@@ -15,6 +15,7 @@ class AccesBdd {
 			idGrauland INTEGER,
 			dateHeure DATETIME,
 			examen TEXT,
+			lieu TEXT,
 			patient TEXT,
 			metadata1 TEXT,
 			metadata2 TEXT,
@@ -77,6 +78,22 @@ class AccesBdd {
 	public function getExamen($id) {
 		$stmt = $this->pdo->prepare("
 			SELECT examen FROM hopital WHERE id = :id
+		");
+		$stmt->bindParam(":id", $id);
+		$stmt->execute();
+
+		return $stmt->fetchColumn();
+	}
+
+	/**
+	 * Récupère le lieu d'un certain rendez-vous
+	 *
+	 * @param  int $id ID du rendez-vous
+	 * @return string Lieu de l'acte
+	 */
+	public function getLieu($id) {
+		$stmt = $this->pdo->prepare("
+			SELECT lieu FROM hopital WHERE id = :id
 		");
 		$stmt->bindParam(":id", $id);
 		$stmt->execute();
@@ -184,19 +201,21 @@ class AccesBdd {
 	 * @param  int $idGrauland ID Grauland du patient
 	 * @param  string $dateHeure Date et heure du rendez-vous
 	 * @param  string $examen Type d'examen
+	 * @param  string $lieu Lieu de l'examen
 	 * @param  string $patient Nom du patient
 	 * @param  string $metadata1 metadata1
 	 * @param  string $metadata2 metadata2
 	 * @param  int $montant Montant de l'acte
 	 */
 	public function newAppointment(
-		$idGrauland, $dateHeure, $examen, $patient, $metadata1, $metadata2,
-		$montant
+		$idGrauland, $dateHeure, $examen, $lieu, $patient, $metadata1,
+		$metadata2, $montant
 	) {
 		// Récupère les données du formulaire
 		$idGrauland = htmlspecialchars($idGrauland);
 		$dateHeure = htmlspecialchars($dateHeure);
 		$examen = htmlspecialchars($examen);
+		$lieu = htmlspecialchars($lieu);
 		$patient = htmlspecialchars($patient);
 		$metadata1 = htmlspecialchars($metadata1);
 		$metadata2 = htmlspecialchars($metadata2);
@@ -208,15 +227,16 @@ class AccesBdd {
 
 		// Ajoute le rendez-vous à la base de données
 		$stmt = $this->pdo->prepare("
-			INSERT INTO hopital (idGrauland, dateHeure, examen, patient,
+			INSERT INTO hopital (idGrauland, dateHeure, examen, lieu, patient,
 				metadata1, metadata2, montant)
-			VALUES (:idGrauland, :dateHeure, :examen, :patient, :metadata1,
-				:metadata2, :montant)
+			VALUES (:idGrauland, :dateHeure, :examen, :lieu, :patient,
+				:metadata1, :metadata2, :montant)
 		");
 
 		$stmt->bindParam(":idGrauland", $idGrauland);
 		$stmt->bindParam(":dateHeure", $dateHeure);
 		$stmt->bindParam(":examen", $examen);
+		$stmt->bindParam(":lieu", $lieu);
 		$stmt->bindParam(":patient", $patient);
 		$stmt->bindParam(":metadata1", $metadata1);
 		$stmt->bindParam(":metadata2", $metadata2);
