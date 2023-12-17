@@ -1,6 +1,4 @@
-// ** This file is a debugging tool for the front end. 
-// It simulates a backend API that returns promises 
-// with a delay of 1 second.
+import axios from 'axios';
 
 let med = {
 	1: {
@@ -56,13 +54,11 @@ let med = {
 		results: "https://www.localhost:8080/resultat/4.pdf"
 	},
 }
-
+void med;
 export default {
-	getAll() {
-		return new Promise((resolve) => {
-			setTimeout(() => {
-				resolve({ data: Object.values(med) });
-			}, 1000);
-		});			
+	getAll(id) {
+		let formData = new FormData();
+		formData.append('idGroland', id);
+		return axios.post('getdmi.php', formData);
 	},
 }

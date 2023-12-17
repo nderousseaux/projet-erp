@@ -80,41 +80,45 @@ export default {
 	},
 
 	mounted() {
-		this.getMeds();
+		this.getMeds(this.id)
 	},
 
 	computed: {
 		...mapGetters({
 			medsData: 'getMedsPrevu',
 			loading: 'getLoading',
+			id: 'getId',
 		}),
 
 		meds() {
-			// € devant les nombres
-			const formatter = new Intl.NumberFormat('fr-FR', {
-				style: 'currency',
-				currency: 'EUR',
+			
+			if (!this.medsData) {
+				return [];
+			}
+			console.log(this.medsData);
+			this.medsData.forEach((med) => {
+				med.d = med.date.split(' ')[0];
+				med.time = med.date.split(' ')[1];
+				med.date = med.d;
+				med.place = med.lieu;
+				med.intervention = med.type;
+				// On supprime les deux derniers caractères
+				med.fees = med.prix.slice(0, -3) + '€';
+				med.fees = med.fees.replace(',', '');
+				med.topay = med.restant.slice(0, -3) + '€';
+				med.remboursement = parseInt(med.fees) - parseInt(med.topay) + '€';
+				med.confirm = med.confirme;
+				med.confirm = med.confirm == "1" ? 'Oui' : 'Non';
 			});
 
-			return this.medsData.map((med) => {
-				return {
-					date: med.date,
-					time: med.time,
-					place: med.place,
-					intervention: med.intervention,
-					notes: med.notes,
-					fees: formatter.format(med.fees),
-					remboursement: formatter.format(med.remboursement),
-					topay: formatter.format(med.topay),
-					confirm: med.confirm ? 'Oui' : 'Non',
-				}
-			})
+			return this.medsData;
 		},
 	},
 
 	methods: {
+		// fetch meds with id from store
 		...mapActions({
-			getMeds: 'fetchMeds',
+			getMeds: 'fetchMeds'
 		}),
 	},
 

@@ -1,9 +1,9 @@
-import _ from 'lodash';
+// import _ from 'lodash';
 
 import api from '@/api';
 
 const state = () => ({
-	meds: {},
+	meds: [],
 	loading: false,
 });
 
@@ -11,17 +11,21 @@ const getters = {
 	getMeds: (state) => state.meds,
 	getLoading: (state) => state.loading,
 	getMedsPrevu: (state) => {
-		return _.filter(state.meds, { 'isPass': false });
+		if (!state.meds)
+			return [];
+		return state.meds.filter(med => new Date(med.date) > new Date());
 	},
 	getMedsPass: (state) => {
-		return _.filter(state.meds, { 'isPass': true });
+		if (!state.meds)
+			return [];
+		return state.meds.filter(med => new Date(med.date) < new Date());
 	},
 };
 
 const actions = {
-	async fetchMeds({ commit }) {
+	async fetchMeds({ commit }, id) {
 		commit('setLoading', true);
-		const response = await api.med.getAll();
+		const response = await api.med.getAll(id);
 		commit('setMeds', response.data);
 		commit('setLoading', false);
 	},
