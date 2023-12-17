@@ -50,7 +50,7 @@ function printAppointment(typeRdv) {
 
 			}
 			if (typeRdv == "passes") {
-				sendToCMIMutuelle(donneesObj[0]);
+				sendAppCMIMutuelle(donneesObj[0]);
 				let icon_files = document.createElement("div");
 				icon_files.innerHTML = "<img class=\"file\" src=\"img/file.png\" />";
 				icon_files.classList.add("colonne");

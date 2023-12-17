@@ -73,6 +73,58 @@ class AccesBdd {
 	}
 
 	/**
+	 * Récupère le montant de l'acte
+	 */
+	public function getMontant($id) {
+		$stmt = $this->pdo->prepare("
+			SELECT montant FROM hopital WHERE id = :id
+		");
+		$stmt->bindParam(":id", $id);
+		$stmt->execute();
+
+		return $stmt->fetch(PDO::FETCH_ASSOC);
+	}
+
+	/**
+	 * Récupère la date et l'heure du rendez-vous
+	 */
+	public function getDate($id) {
+		$stmt = $this->pdo->prepare("
+			SELECT dateHeure FROM hopital WHERE id = :id
+		");
+		$stmt->bindParam(":id", $id);
+		$stmt->execute();
+
+		return $stmt->fetch(PDO::FETCH_ASSOC);
+	}
+
+	/**
+	 * Récupère le type d'examen
+	 */
+	public function getExamen($id) {
+		$stmt = $this->pdo->prepare("
+			SELECT examen FROM hopital WHERE id = :id
+		");
+		$stmt->bindParam(":id", $id);
+		$stmt->execute();
+
+		return $stmt->fetch(PDO::FETCH_ASSOC);
+	}
+
+	/**
+	 * Récupère l'id Groland du patient
+	 */
+	public function getIdGroland($id) {
+		$stmt = $this->pdo->prepare("
+			SELECT idGroland FROM hopital WHERE id = :id
+		");
+		$stmt->bindParam(":id", $id);
+		$stmt->execute();
+
+		return $stmt->fetch(PDO::FETCH_ASSOC);
+	}
+
+	/**
 	 * Réupère si la DMI a payé
 	 */
 	public function getPayeDMI($id) {

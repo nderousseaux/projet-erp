@@ -1,10 +1,10 @@
-function sendToCMIMutuelle(idLigne) {
+function sendAppCMIMutuelle(idLigne) {
 	return new Promise((resolve, reject) => {
 		// Champ à envoyer au back
 		let champPost = new FormData();
 		champPost.append("idLigne", idLigne);
 
-		fetch("../backend/sendToCMIMutuelle.php", {
+		fetch("../backend/sendAppCMIMutuelle.php", {
 			method: "POST",
 			body: champPost
 		})
