@@ -233,5 +233,30 @@ class AccessBdd {
 
 		return $res;
 	}
+
+	/**
+	 * Recherche un acte à partir de l'identifiant graulandais et le nom
+	 * S'il on en trouve plusieurs, on renvoie le plus récent
+	 * @return 0 si l'acte n'est pas trouvé,
+	 * @return 1 sinon
+	 */
+	public function findact($id, $nom) {
+		$remaining = floatval($this->getRemaining($id)["restant"]);
+		$res = $remaining - floatval($amount);
+		if ($res <= 0) {
+			$res = 0;
+		}
+		$stmt = $this->pdo->prepare("
+			SELECT TOP 1 id FROM acte
+			WHERE id_grld = :id and typeacte LIKE :nom
+			SORT BY date DESC
+		");
+		$stmt->bindParam(":id_grld", $id);
+		$stmt->bindParam(":nom", $nom);
+		$stmt->execute();
+		$res = $stmt->fetchAll(PDO::FETCH_ASSOC)[0];
+
+		return $res;
+	}
 }
 ?>
