@@ -5,16 +5,16 @@ class AccessBdd {
 
 	public function __construct() {
 		// Chemin vers le fichier de la base de données
-		$host = "127.0.0.1";
-		$dbname = 'db';
-		$dsn = "mysql:host=$host;dbname=$dbname";
+		$host = "db";
+		$dbname = 'dmi';
+		$port = 3306;
+		$dsn = "mysql:host=$host;port=$port;dbname=$dbname";
 		$user = 'user';
 		$pwd = 'password';
 		
 		// Connexion à la base de données
 		$this->pdo = new PDO($dsn, $user, $pwd);
 
-		$this->pdo->beginTransaction();
 		// Création de la table si elle n'existe pas
 		$this->pdo->exec("CREATE TABLE IF NOT EXISTS patient (
 			id_grld INT NOT NULL,
@@ -46,7 +46,6 @@ class AccessBdd {
 			PRIMARY KEY (id),
             FOREIGN KEY(related_to) REFERENCES acte(id) ON DELETE CASCADE
         )");
-		$this->pdo->commit();
 	}
 
 	/**

@@ -1,0 +1,32 @@
+version: '3.3'
+
+services:
+  db:
+    image: mysql:5.7
+    restart: always
+    environment:
+      MYSQL_DATABASE: 'dmi'
+      MYSQL_USER: 'user'
+      MYSQL_PASSWORD: 'password'
+      MYSQL_ROOT_PASSWORD: 'password'
+    tty: true
+    ports:
+      - '3000:3306'
+    expose:
+      - '3000'
+
+  php:
+    build: ./backend
+    volumes: 
+      - ./backend/src:/var/www/html
+    ports:
+      - 3001:80
+    depends_on:
+      - db
+
+  front:
+    build: ./frontend
+    ports:
+      - 3002:80
+    depends_on:
+      - php
