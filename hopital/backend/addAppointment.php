@@ -14,7 +14,7 @@ if (
 	is_string($_POST["mutuelle"]) &&
 	is_numeric($_POST["montant"])
 ){
-	$idGroland = $_POST["idGroland"];
+	$idGrauland = $_POST["idGrauland"];
 	$dateHeure = $_POST["dateHeure"];
 	$examen = $_POST["examen"];
 	$patient = $_POST["patient"];
@@ -23,7 +23,7 @@ if (
 	$mutuelle = $_POST["mutuelle"];
 	$montant = $_POST["montant"];
 
-	$idExam = $bdd->newAppointment($idGroland, $dateHeure, $examen, $patient,
+	$idExam = $bdd->newAppointment($idGrauland, $dateHeure, $examen, $patient,
 		$metadata1, $metadata2, $mutuelle, $montant);
 
 	// Envoie l'id de l'examen au client

@@ -36,7 +36,7 @@ else {
 }
 
 // Récupère les informations
-$idGroland = $bdd->getIdGroland($_POST["idLigne"]);
+$idGrauland = $bdd->getIdGrauland($_POST["idLigne"]);
 $lieu = "Strasbourg";
 $examen = $bdd->getExamen($id);
 $date = $bdd->getDate($id);
@@ -46,7 +46,7 @@ $montant = $bdd->getMontant($id);
 $url = "http://localhost:";
 $url = $url . urlencode($port) . "/";
 $url = $url . urlencode($nomFichierBakend);
-$url = $url . "?nuig=" . urlencode($idGroland);
+$url = $url . "?nuig=" . urlencode($idGrauland);
 $url = $url . "&lieu=" . urlencode($lieu);
 $url = $url . "&intervention=" . urlencode($examen);
 $url = $url . "&date=" . urlencode($date);

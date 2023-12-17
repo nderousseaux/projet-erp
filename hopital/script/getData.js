@@ -8,11 +8,9 @@
  */
 function getAppointment(typeRdv) {
 	return new Promise((resolve, reject) => {
-		// Champ à envoyer au back, pour indiquer la colonne à récupérer
 		let champPost = new FormData();
 		champPost.append("typeRdv", typeRdv);
 
-		// Récupère les dates des mesures et les données de la colonne demandée
 		fetch("../backend/getAppointment.php", {
 			method: "POST",
 			body: champPost

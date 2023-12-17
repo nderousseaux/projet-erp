@@ -12,7 +12,7 @@ class AccesBdd {
 		// Création de la table si elle n'existe pas
 		$this->pdo->exec("CREATE TABLE IF NOT EXISTS hopital (
 			id INTEGER PRIMARY KEY AUTOINCREMENT,
-			idGroland INTEGER,
+			idGrauland INTEGER,
 			dateHeure DATETIME,
 			examen TEXT,
 			patient TEXT,
@@ -36,11 +36,11 @@ class AccesBdd {
 	}
 
 	public function newAppointment(
-		$idGroland, $dateHeure, $examen, $patient, $metadata1, $metadata2,
+		$idGrauland, $dateHeure, $examen, $patient, $metadata1, $metadata2,
 		$mutuelle, $montant
 	) {
 		// Récupère les données du formulaire
-		$idGroland = htmlspecialchars($idGroland);
+		$idGrauland = htmlspecialchars($idGrauland);
 		$dateHeure = htmlspecialchars($dateHeure);
 		$examen = htmlspecialchars($examen);
 		$patient = htmlspecialchars($patient);
@@ -55,13 +55,13 @@ class AccesBdd {
 
 		// Ajoute le rendez-vous à la base de données
 		$stmt = $this->pdo->prepare("
-			INSERT INTO hopital (idGroland, dateHeure, examen, patient,
+			INSERT INTO hopital (idGrauland, dateHeure, examen, patient,
 				metadata1, metadata2, mutuelle, montant)
-			VALUES (:idGroland, :dateHeure, :examen, :patient, :metadata1,
+			VALUES (:idGrauland, :dateHeure, :examen, :patient, :metadata1,
 				:metadata2, :mutuelle, :montant)
 		");
 
-		$stmt->bindParam(":idGroland", $idGroland);
+		$stmt->bindParam(":idGrauland", $idGrauland);
 		$stmt->bindParam(":dateHeure", $dateHeure);
 		$stmt->bindParam(":examen", $examen);
 		$stmt->bindParam(":patient", $patient);
@@ -130,11 +130,11 @@ class AccesBdd {
 	}
 
 	/**
-	 * Récupère l'id Groland du patient
+	 * Récupère l'id Grauland du patient
 	 */
-	public function getIdGroland($id) {
+	public function getIdGrauland($id) {
 		$stmt = $this->pdo->prepare("
-			SELECT idGroland FROM hopital WHERE id = :id
+			SELECT idGrauland FROM hopital WHERE id = :id
 		");
 		$stmt->bindParam(":id", $id);
 		$stmt->execute();
