@@ -4,7 +4,7 @@ include_once "AccesBdd.php";
 $bdd = new AccesBdd();
 
 define("PORT_DMI", "3001");
-define("PORT_MUTUELLE", "3002");
+define("PORT_MUTUELLE", "3005");
 
 $id = null;
 
