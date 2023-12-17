@@ -10,7 +10,7 @@ import ApiFunctions from "@/api";
 let app = createApp(App);
 
 app.config.globalProperties.axios = axios;
-app.config.globalProperties.axios.defaults.baseURL = process.env.VUE_APP_URL_BACKEND;
+app.config.globalProperties.axios.defaults.baseURL = "http://localhost:3001";
 app.config.globalProperties.api = ApiFunctions;
 
 app
