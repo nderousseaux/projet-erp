@@ -23,8 +23,11 @@ if (
 	$mutuelle = $_POST["mutuelle"];
 	$montant = $_POST["montant"];
 
-	$bdd->newAppointment($idGroland, $dateHeure, $examen, $patient, $metadata1,
-		$metadata2, $mutuelle, $montant);
+	$idExam = $bdd->newAppointment($idGroland, $dateHeure, $examen, $patient,
+		$metadata1, $metadata2, $mutuelle, $montant);
+
+	// Envoie l'id de l'examen au client
+	echo $idExam;
 }
 else {
 	echo "Erreur: Formulaire mal formé";

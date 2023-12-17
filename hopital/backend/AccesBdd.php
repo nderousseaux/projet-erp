@@ -70,6 +70,10 @@ class AccesBdd {
 		$stmt->bindParam(":mutuelle", $mutuelle);
 		$stmt->bindParam(":montant", $montant);
 		$stmt->execute();
+
+		// Récupère l'id du rendez-vous
+		$id = $this->pdo->lastInsertId();
+		return $id;
 	}
 
 	/**
