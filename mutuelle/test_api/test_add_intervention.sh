@@ -1,1 +1,8 @@
-curl -d 'date=10/12/23&nuig=A2&intervention=Y_SCAN_01&commentaire=bla&lieu=hôpital_X&total=250&paye=125' localhost:8090/api/add_intervention.php
+curl -G "http://localhost:8090/api/add_intervention.php" \
+--data-urlencode "date=20/12/23" \
+--data-urlencode "nuig=A2" \
+--data-urlencode "intervention=Y_SCAN_03" \
+--data-urlencode "commentaire=RAS" \
+--data-urlencode "lieu=hôpital_X" \
+--data-urlencode "total=250" \
+--data-urlencode "paye=125"

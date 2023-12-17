@@ -8,7 +8,7 @@
 </head>
 <body>
   <h1>add_user</h1>
-  <form action="./add_user.php" method="post">
+  <form action="./api/add_user.php" method="get">
     <ul>
       <li>
         <label for="id">nom &nbsp;:</label>
@@ -33,7 +33,7 @@
   </form>
 
   <h1>add_intervention</h1>
-  <form action="./add_intervention.php" method="post">
+  <form action="./api/add_intervention.php" method="get">
     <ul>
       <li>
         <label for="id">date &nbsp;:</label>
@@ -56,8 +56,12 @@
         <input type="text" id="id" name="lieu" />
       </li>
       <li>
-        <label for="id">prix &nbsp;:</label>
-        <input type="text" id="id" name="prix" />
+        <label for="id">total &nbsp;:</label>
+        <input type="text" id="id" name="total" />
+      </li>
+      <li>
+        <label for="id">paye &nbsp;:</label>
+        <input type="text" id="id" name="paye" />
       </li>
     </ul>
     <div class="button">

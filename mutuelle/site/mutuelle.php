@@ -13,10 +13,20 @@ $DB='../data/mutuelle.txt';
 
 function grep($id,$dbfile)
 {
+  $titres = ["Date", "Intervention", "Commentaire", "Lieu", "Montant total", "Montant pris en charge", "% Pris en charge"];
+
   #return shell_exec('grep -e "^[0-9\/]* '.$id.' " '.$file);
   $handle = fopen($dbfile, "r");
   if ($handle) {
       echo '<div class="table">';
+      
+      // champs de titre
+      echo '<div class="table-row">';
+      foreach ($titres as $elt) {
+        echo '<div class="case">'.$elt.'</div>';
+      }
+      echo '</div>';
+
       while (($line = fgets($handle)) !== false) {
           // Séparer la ligne de la bdd en fonction des espaces
           $elements = explode(' ', $line);
@@ -41,6 +51,7 @@ function grep($id,$dbfile)
 
 }
 $NUIG=htmlspecialchars($_GET["nuig"]);
+echo "Voici les interventions médiacles pour l'identifiant $NUIG";
 echo grep($NUIG,$DB);
 ?>
   <div id = "liste"></div>
