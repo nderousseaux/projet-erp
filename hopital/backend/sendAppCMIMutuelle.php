@@ -24,10 +24,10 @@ else {
 
 // Détermine le nom du fichier backend
 if ($entite === "dmi") {
-	$nomFichierBakend = "createact.php";
+	$nomFichierBakend = "backend/src/createact.php";
 }
 else if ($entite === "mutuelle") {
-	$nomFichierBakend = "add_intervention.php";
+	$nomFichierBakend = "api/add_intervention.php";
 }
 else {
 	echo "Erreur: entite non reconnue";
