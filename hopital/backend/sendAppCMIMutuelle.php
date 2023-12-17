@@ -25,9 +25,11 @@ else {
 // Détermine le nom du fichier backend
 if ($entite === "dmi") {
 	$nomFichierBakend = "backend/src/createact.php";
+	$port = PORT_DMI;
 }
 else if ($entite === "mutuelle") {
 	$nomFichierBakend = "api/add_intervention.php";
+	$port = PORT_MUTUELLE;
 }
 else {
 	echo "Erreur: entite non reconnue";
@@ -42,7 +44,7 @@ $montant = $bdd->getMontant($id);
 
 // Forge l'url
 $url = "http://localhost:";
-$url = $url . PORT_DMI . "/";
+$url = $url . urlencode($port) . "/";
 $url = $url . urlencode($nomFichierBakend);
 $url = $url . "?nuig=" . urlencode($idGroland);
 $url = $url . "&lieu=" . urlencode($lieu);
