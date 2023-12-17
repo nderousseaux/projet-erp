@@ -9,4 +9,4 @@ services:
         - ./site/:/app/
         - ./data/:/data/
       ports:
-        - 8080:80
+        - 8090:80
