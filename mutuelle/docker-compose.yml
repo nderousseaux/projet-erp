@@ -9,4 +9,8 @@ services:
         - ./site/:/app/
         - ./data/:/data/
       ports:
-        - 8090:80
+        - 3005:80
+
+networks:
+  network1:
+    name: erp-net
