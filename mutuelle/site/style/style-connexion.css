@@ -1,0 +1,57 @@
+body {
+  font-family: Arial, sans-serif;
+  background-color: #f2f2f2;
+  margin: 0;
+  padding: 1%;
+}
+
+form {
+    margin: 0 auto;
+    width: 40%;
+    text-align: center;
+
+    padding: 1em;
+    border: 1px solid #ccc;
+    border-radius: 1em;
+    background-color: #e2c0c0;
+  }
+  
+ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+  }
+  
+form li + li {
+    margin-top: 1em;
+  }
+  
+label {
+    display: inline-block;
+    width: 20%;
+    text-align: center;
+  }
+  
+input {
+    font: 1em sans-serif;
+  
+    width: 60%;
+    box-sizing: border-box;
+
+    border: 1px solid #999;
+  }
+  
+input:focus {
+    border-color: #000;
+  }
+  
+button {
+    margin-top: 1.5em;
+  }
+
+@media only screen and (max-width: 800px) {
+  form {
+      width: 100%;
+      padding:0;
+  }
+}
