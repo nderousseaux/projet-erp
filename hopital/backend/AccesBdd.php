@@ -325,15 +325,4 @@ class AccesBdd {
 
 		return $stmt->fetchAll(PDO::FETCH_ASSOC);
 	}
-
-	public function sendToCMIMutuelle($cmi, $content) {
-		if ($cmi == "cmi")
-		{
-
-		}
-		else
-		{
-			
-		}
-	}
 }
