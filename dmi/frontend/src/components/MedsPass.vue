@@ -21,10 +21,10 @@
 
 
 <script>
-import { h } from 'vue'
+// import { h } from 'vue'
 import { mapGetters, mapActions} from 'vuex';
 
-import { NDataTable, NH2, NText, NSpin, NButton } from 'naive-ui'
+import { NDataTable, NH2, NText, NSpin } from 'naive-ui'
 
 
 export default {
@@ -72,22 +72,22 @@ export default {
 					title: 'Reste à payer',
 					key: 'topay',
 				},
-				{
-					title: 'Résultat',
-					key: 'results',
-					render (row) {
-						return h(
-							NButton,
-							{
-								size: 'small',
-								onClick: () => {
-									window.open(row.results);
-								}
-							},
-							{ default: () => 'Ouvrir le pdf' }
-						)
-					}
-				}
+				// {
+				// 	title: 'Résultat',
+				// 	key: 'results',
+				// 	render (row) {
+				// 		return h(
+				// 			NButton,
+				// 			{
+				// 				size: 'small',
+				// 				onClick: () => {
+				// 					window.open(row.results);
+				// 				}
+				// 			},
+				// 			{ default: () => 'Ouvrir le pdf' }
+				// 		)
+				// 	}
+				// }
 			],
 		}
 	},
