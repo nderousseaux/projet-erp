@@ -9,8 +9,8 @@ define("PORT_MUTUELLE", "3002");
 $id = null;
 
 // Vérifie si le formulaire est vide
-if (isset($_POST["idLigne"])) {
-	$id = $_POST["idLigne"];
+if (isset($_POST["idExam"])) {
+	$id = $_POST["idExam"];
 }
 else {
 	echo "Erreur: idLigne non spécifié";
@@ -36,7 +36,7 @@ else {
 }
 
 // Récupère les informations
-$idGrauland = $bdd->getIdGrauland($_POST["idLigne"]);
+$idGrauland = $bdd->getIdGrauland($_POST["idExam"]);
 $lieu = "Strasbourg";
 $examen = $bdd->getExamen($id);
 $date = $bdd->getDate($id);
@@ -44,19 +44,19 @@ $montant = $bdd->getMontant($id);
 
 // Forge l'url
 $url = "http://localhost:";
-$url = $url . urlencode($port) . "/";
-$url = $url . urlencode($nomFichierBakend);
+$url = $url . $port . "/";
+$url = $url . $nomFichierBakend;
 $url = $url . "?nuig=" . urlencode($idGrauland);
 $url = $url . "&lieu=" . urlencode($lieu);
 $url = $url . "&intervention=" . urlencode($examen);
 $url = $url . "&date=" . urlencode($date);
 $url = $url . "&total=" . urlencode($montant);
+$url = $url . "&id_acte=" . urlencode($_POST["idExam"]);
+
+echo $url;
 
 // Ajoute le commentaire si c'est une mutuelle
-if ($entite === "dmi") {
-	$url = $url . "&id_acte=" . urlencode($_POST["idExam"]);
-}
-else if ($entite === "mutuelle") {
+if ($entite === "mutuelle") {
 	$url = $url . "&commentaire=" . urlencode($bdd->getMetadata2($id));
 }
 

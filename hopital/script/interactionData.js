@@ -126,9 +126,15 @@ function ajoutRdv() {
 			method: "POST",
 			body: formData
 		})
-		.then(idExam => {
-			sendAppCMIMutuelle(idExam, "dmi");
-			sendAppCMIMutuelle(idExam, "mutuelle");
+		.then(reponse => {
+			reponse.json()
+				.then(idExam => {
+					sendAppCMIMutuelle(idExam, "dmi");
+					sendAppCMIMutuelle(idExam, "mutuelle");
+				})
+				.catch(error => {
+					console.error(error);
+				});
 		})
 		.catch(error => {
 			console.error(error);

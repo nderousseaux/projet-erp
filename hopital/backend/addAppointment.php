@@ -11,7 +11,6 @@ if (
 	is_string($_POST["patient"]) &&
 	is_string($_POST["metadata1"]) &&
 	is_string($_POST["metadata2"]) &&
-	is_string($_POST["mutuelle"]) &&
 	is_numeric($_POST["montant"])
 ){
 	$idGrauland = $_POST["idGrauland"];
@@ -20,11 +19,10 @@ if (
 	$patient = $_POST["patient"];
 	$metadata1 = $_POST["metadata1"];
 	$metadata2 = $_POST["metadata2"];
-	$mutuelle = $_POST["mutuelle"];
 	$montant = $_POST["montant"];
 
 	$idExam = $bdd->newAppointment($idGrauland, $dateHeure, $examen, $patient,
-		$metadata1, $metadata2, $mutuelle, $montant);
+		$metadata1, $metadata2, $montant);
 
 	// Envoie l'id de l'examen au client
 	echo $idExam;

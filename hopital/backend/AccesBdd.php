@@ -49,7 +49,7 @@ class AccesBdd {
 		$stmt->bindParam(":id", $id);
 		$stmt->execute();
 
-		return $stmt->fetch(PDO::FETCH_ASSOC);
+		return $stmt->fetchColumn();
 	}
 
 	/**
@@ -65,7 +65,7 @@ class AccesBdd {
 		$stmt->bindParam(":id", $id);
 		$stmt->execute();
 
-		return $stmt->fetch(PDO::FETCH_ASSOC);
+		return $stmt->fetchColumn();
 	}
 
 	/**
@@ -81,7 +81,7 @@ class AccesBdd {
 		$stmt->bindParam(":id", $id);
 		$stmt->execute();
 
-		return $stmt->fetch(PDO::FETCH_ASSOC);
+		return $stmt->fetchColumn();
 	}
 
 	/**
@@ -97,7 +97,7 @@ class AccesBdd {
 		$stmt->bindParam(":id", $id);
 		$stmt->execute();
 
-		return $stmt->fetch(PDO::FETCH_ASSOC);
+		return $stmt->fetchColumn();
 	}
 
 	/**
@@ -113,7 +113,7 @@ class AccesBdd {
 		$stmt->bindParam(":id", $id);
 		$stmt->execute();
 
-		return $stmt->fetch(PDO::FETCH_ASSOC);
+		return $stmt->fetchColumn();
 	}
 
 	/**
@@ -129,7 +129,7 @@ class AccesBdd {
 		$stmt->bindParam(":id", $id);
 		$stmt->execute();
 
-		return $stmt->fetch(PDO::FETCH_ASSOC);
+		return $stmt->fetchColumn();
 	}
 
 	/**
@@ -145,7 +145,7 @@ class AccesBdd {
 		$stmt->bindParam(":id", $id);
 		$stmt->execute();
 
-		return $stmt->fetch(PDO::FETCH_ASSOC);
+		return $stmt->fetchColumn();
 	}
 
 
