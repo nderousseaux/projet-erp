@@ -1,0 +1,220 @@
+/* Général */
+@font-face {
+	font-family: "Open Sans";
+	font-display: swap;
+	src: url("polices/open-sans-600.woff2") format("woff2"),
+		url("polices/open-sans-600.woff") format("woff");
+}
+
+* {
+	scrollbar-color: #cdcdcd #f0f0f0;
+	scroll-behavior: smooth;
+	scrollbar-width: thin;
+}
+
+body {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	background-color: #f2f1f5;
+	margin: 0;
+	font-family: "Open Sans", Arial, sans-serif;
+}
+
+/* Header */
+header {
+	display: flex;
+	width: 100vw;
+	margin-bottom: 10px;
+	flex-direction: column;
+	align-items: center;
+	background-color: #90c4ee;
+	border-radius: 10px;
+}
+
+/* Sections */
+section {
+	display: flex;
+	width: 95vw;
+	flex-direction: column;
+	align-items: center;
+	background-color: #69a5d6;
+	border-radius: 10px;
+	box-shadow: 0 15px 20px -15px #cecece;
+	margin-bottom: 10px;
+	padding-bottom: 10px;
+}
+
+	/* Divisions dans section (prévus, confirmés, passés) */
+section > div {
+	display: flex;
+	width: 90%;
+	margin-bottom: 20px;
+	flex-direction: column;
+	align-items: center;
+	background-color: #69a5d6;
+	background-image: linear-gradient(180deg, #69a5d6, #93dfdb);
+	border-radius: 10px;
+	transition: background-color 0.5s ease;
+}
+
+#prevus,
+#confirmes,
+#passes{
+	display: flex;
+	width: 95%;
+	margin-bottom: 5px;
+	padding: 10px 0;
+	flex-direction: column;
+	align-items: center;
+	border-radius: 10px;
+	overflow-y:scroll;
+}
+
+#prevus > div,
+#confirmes > div,
+#passes > div {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	margin-bottom: 10px;
+	border-radius: 10px;
+	background-color: rgba(255, 255, 255, 0.7);
+	-webkit-backdrop-filter: blur(10px);
+	backdrop-filter: blur(10px);
+	min-width: 100%;
+}
+
+		/* Tableaux */
+.grille {
+	display: grid !important;
+	grid-template-columns: repeat(7, 1fr);
+	width: calc(100% - 20px);
+	padding: 10px;
+	min-height: 80px;
+	overflow-y: auto;
+}
+.colonne {
+	display: flex;
+	width: 100%;
+	height: 40px;
+
+	align-items: center;
+	justify-content: center;
+	text-align: center;
+}
+.aucunRdv {
+	min-width: 95%;
+	padding: 20px 0;
+}
+
+		/* Titres */
+h2 {
+	color: #36393a;
+}
+
+h3 {
+	width: 80%;
+	color: #e7e7e7;
+	text-align: center;
+	border-style: solid;
+	border-width: 0 0 4px 0;
+	border-image: radial-gradient(#93dfdb, #69a5d6) 1;
+}
+
+
+		/* Checkbox */
+.divCheckbox {
+	display: flex;
+	width: calc(100% - 20px);
+}
+
+input[type="checkbox"] {
+	width: 10%;
+	height: 16px;
+}
+
+label {
+	width: 90%;
+	align-items: center;
+}
+
+	/* Dépôt de résultat */
+#passes > .listFiles {
+	display: initial;	
+	overflow: hidden;
+	max-height: 0;
+	transition: max-height 0.5s ease;
+}
+
+.depot {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	background-color: #69a5d6;
+	transition: background-color 0.5s ease;
+}
+
+.depot.drop {
+	background-color: #93dfdb;
+}
+
+#passes > .liste {
+	overflow: hidden;
+	align-items: initial;
+	min-width: 95%;
+	padding-left: 5%;
+	max-height: 0;
+	transition: max-height 1s ease;
+}
+
+.file {
+	height: 100%;
+	width: 50%;
+	max-width: 45px;
+}
+
+.line-file {
+	display: inline-flex;
+	align-items: center;
+}
+
+.line-file > p {
+	padding: 5px;
+}
+
+i {
+	padding: 5px;
+}
+
+/* Corbeille */
+i.fa-trash {
+	color: red;
+}
+
+/* Téléchargement */
+i.fa-cloud-arrow-down {
+	color: green;
+}
+
+
+@media screen and (min-width: 1081px) {
+	/* Sections */
+	section {
+		margin-bottom: 20px;
+	}
+
+		/* Divisions dans section (prévus, confirmés, passés) */
+	section > div {
+		margin-bottom: 30px;
+	}
+
+	.grille {
+		display: grid !important;
+		grid-template-columns: repeat(12, 1fr);
+		width: calc(100% - 20px);
+		padding: 10px;
+		min-height: 80px;
+		overflow-y: auto;
+	}
+}
