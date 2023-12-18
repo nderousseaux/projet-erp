@@ -13,7 +13,7 @@ services:
         - ./backend/bdd/hopital.db:/app/backend/bdd/hopital.db
 
       ports:
-        - 3003:80
+        - 3003:3003
 
 networks:
   mutuelle_erp-net:
