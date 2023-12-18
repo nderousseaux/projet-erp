@@ -1,0 +1,6 @@
+AH00558: apache2: Could not reliably determine the server's fully qualified domain name, using 172.26.0.5. Set the 'ServerName' directive globally to suppress this message
+AH00558: apache2: Could not reliably determine the server's fully qualified domain name, using 172.26.0.5. Set the 'ServerName' directive globally to suppress this message
+[Mon Dec 18 07:50:00.690182 2023] [mpm_prefork:notice] [pid 1] AH00163: Apache/2.4.57 (Debian) PHP/8.2.13 configured -- resuming normal operations
+[Mon Dec 18 07:50:00.690199 2023] [core:notice] [pid 1] AH00094: Command line: 'apache2 -D FOREGROUND'
+[Mon Dec 18 08:17:19.696539 2023] [autoindex:error] [pid 17] [client 172.26.0.2:46670] AH01276: Cannot serve directory /var/www/html/: No matching DirectoryIndex (index.php,index.html) found, and server-generated directory index forbidden by Options directive
+172.26.0.2 - - [18/Dec/2023:08:17:19 +0000] "GET / HTTP/1.1" 403 435 "-" "curl/7.64.0"

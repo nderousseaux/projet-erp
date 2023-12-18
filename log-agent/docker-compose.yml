@@ -1,0 +1,19 @@
+version: "3.8"
+
+services:
+  logs:
+      image: python:3.13.0a2-bookworm
+      container_name: logs
+      restart: always
+
+      networks:
+        - "mutuelle_erp-net"
+      volumes:
+        - /var/run/docker.sock:/var/run/docker.sock
+        - ./logs/:/logs/
+        - ./log-agent.py:/log-agent.py
+      command: bash -c "pip install docker schedule && python3 /log-agent.py"
+
+networks:
+  mutuelle_erp-net:
+    external: true

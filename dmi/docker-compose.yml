@@ -4,6 +4,8 @@ services:
   db:
     image: mysql:5.7
     restart: always
+    networks:
+      - "mutuelle_erp-net"
     environment:
       MYSQL_DATABASE: 'dmi'
       MYSQL_USER: 'user'
@@ -17,6 +19,8 @@ services:
 
   php:
     build: ./backend
+    networks:
+      - "mutuelle_erp-net"
     volumes: 
       - ./backend/src:/var/www/html
     ports:
@@ -26,7 +30,13 @@ services:
 
   front:
     build: ./frontend
+    networks:
+      - "mutuelle_erp-net"
     ports:
       - 3002:80
     depends_on:
       - php
+
+networks:
+  mutuelle_erp-net:
+    external: true
