@@ -1,4 +1,0 @@
-[Mon Dec 18 08:26:29 2023] PHP 8.2.13 Development Server (http://hopital:3003) started
-[Mon Dec 18 08:29:09 2023] 172.27.0.5:55570 Accepted
-[Mon Dec 18 08:29:09 2023] 172.27.0.5:55570 [200]: GET /
-[Mon Dec 18 08:29:09 2023] 172.27.0.5:55570 Closing
