@@ -5,11 +5,11 @@ include_once "AccessBdd.php";
 $bdd = new AccessBdd();
 // Vérification des paramètres
 if (
-    isset($_POST["idActe"]) &&
-    isset($_POST["montant"])
+    isset($_GET["idActe"]) &&
+    isset($_GET["montant"])
 ){
-    $id = $_POST["idActe"];
-    $montant = floatval($_POST["montant"]);
+    $id = $_GET["idActe"];
+    $montant = floatval($_GET["montant"]);
     // Check si l'acte existe
     if ($bdd->getActe($id) == null) {
         echo json_encode(array(1, "Acte non existant"));
