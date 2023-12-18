@@ -20,7 +20,7 @@ Récupérer l'entièreté du dmi :
 - curl -i -X POST -d 'idGroland=1' localhost:3001/getdmi.php
 
 Payer un acte (interconnexion avec Hopital quand restant = 0):
-- curl -i -X POST -d 'idActe=1&montant=200.00' localhost:3001/payact.php
+- curl -i -G -d 'idActe=1&montant=200.00' localhost:3001/payact.php
 
 Confirmer un acte : 
 - curl -i -X POST -d 'idActe=10' localhost:3001/confirmact.php
