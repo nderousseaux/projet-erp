@@ -5,6 +5,10 @@ services:
       image: webdevops/php-apache:8.2
       container_name: mutuelle
       restart: always
+      # extra_hosts:
+      #   - "host.docker.internal:host-gateway"
+      networks:
+        - "erp-net"
       volumes:
         - ./site/:/app/
         - ./data/:/data/
@@ -12,5 +16,5 @@ services:
         - 3005:80
 
 networks:
-  network1:
-    name: erp-net
+  erp-net:
+    driver: bridge

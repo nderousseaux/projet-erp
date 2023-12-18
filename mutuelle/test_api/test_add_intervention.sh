@@ -4,4 +4,5 @@ curl -G "http://localhost:3005/api/add_intervention.php" \
 --data-urlencode "intervention=Y_SCAN_03" \
 --data-urlencode "commentaire=RAS" \
 --data-urlencode "lieu=hôpital_X" \
---data-urlencode "total=250"
+--data-urlencode "total=250" \
+--data-urlencode "id_acte=17"

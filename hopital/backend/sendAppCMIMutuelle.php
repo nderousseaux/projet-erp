@@ -43,8 +43,8 @@ $date = $bdd->getDate($id);
 $montant = $bdd->getMontant($id);
 
 // Forge l'url
-$url = "http://localhost:";
-$url = $url . $port . "/";
+$url = "http://$entite/";
+//$url = $url . $port . "/";	// pas besoin du port pour mutuelle, jsp pkoi par contre...
 $url = $url . $nomFichierBakend;
 $url = $url . "?nuig=" . urlencode($idGrauland);
 $url = $url . "&lieu=" . urlencode($lieu);

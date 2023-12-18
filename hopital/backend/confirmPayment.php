@@ -1,8 +1,8 @@
 <?php
 // Script de création d'un acte
-include_once "AccessBdd.php";
+include_once "AccesBdd.php";
 
-$bdd = new AccessBdd();
+$bdd = new AccesBdd();
 // Vérification des paramètres
 if (
 	isset($_GET["idActe"]) &&

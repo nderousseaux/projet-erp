@@ -1,0 +1,20 @@
+version: "3.8"
+
+services:
+  hopital:
+      build: ./
+      container_name: hopital
+      restart: always
+      # extra_hosts:
+      #   - "host.docker.internal:host-gateway"
+      networks:
+        - "mutuelle_erp-net"
+      volumes:
+        - ./backend/bdd/hopital.db:/app/backend/bdd/hopital.db
+
+      ports:
+        - 3003:80
+
+networks:
+  mutuelle_erp-net:
+    external: true
