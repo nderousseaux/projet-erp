@@ -31,8 +31,11 @@ $id_acte		= urldecode($_GET["id_acte"]);		// montant paye par hopital
 $pec        = 50;					// prise en charge 50% par défaut
 $virement   = $total * $pec/100;	// somme prise en charge par mutuelle ( % du total de l'intervention, a verser a hopital)
 
+$createDate = new DateTime($date);
 
-$str = "$date $nuig $intervention $commentaire $lieu $total $virement $pec\n";
+$strip = $createDate->format('d/m/y');
+
+$str = "$strip $nuig $intervention $commentaire $lieu $total $virement $pec\n";
 
 $file = fopen("../../data/mutuelle.txt", "a");
 fwrite($file, $str);

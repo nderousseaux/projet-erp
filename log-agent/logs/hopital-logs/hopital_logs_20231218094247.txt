@@ -1,0 +1,62 @@
+[Mon Dec 18 09:41:37 2023] PHP 8.2.13 Development Server (http://hopital:3003) started
+[Mon Dec 18 09:42:15 2023] 172.22.0.1:51412 Accepted
+[Mon Dec 18 09:42:15 2023] 172.22.0.1:51412 [200]: GET /
+[Mon Dec 18 09:42:15 2023] 172.22.0.1:51412 Closing
+[Mon Dec 18 09:42:15 2023] 172.22.0.1:51428 Accepted
+[Mon Dec 18 09:42:16 2023] 172.22.0.1:51428 [200]: GET /style/index.css
+[Mon Dec 18 09:42:16 2023] 172.22.0.1:51442 Accepted
+[Mon Dec 18 09:42:16 2023] 172.22.0.1:51452 Accepted
+[Mon Dec 18 09:42:16 2023] 172.22.0.1:51442 [200]: GET /script/sendToCMIMutuelle.js
+[Mon Dec 18 09:42:16 2023] 172.22.0.1:51462 Accepted
+[Mon Dec 18 09:42:16 2023] 172.22.0.1:51428 Closing
+[Mon Dec 18 09:42:16 2023] 172.22.0.1:51452 [200]: GET /script/sendFile.js
+[Mon Dec 18 09:42:16 2023] 172.22.0.1:51466 Accepted
+[Mon Dec 18 09:42:16 2023] 172.22.0.1:51462 [200]: GET /script/getFiles.js
+[Mon Dec 18 09:42:16 2023] 172.22.0.1:51478 Accepted
+[Mon Dec 18 09:42:16 2023] 172.22.0.1:51466 [200]: GET /script/showFiles.js
+[Mon Dec 18 09:42:16 2023] 172.22.0.1:51442 Closing
+[Mon Dec 18 09:42:16 2023] 172.22.0.1:51452 Closing
+[Mon Dec 18 09:42:16 2023] 172.22.0.1:51478 [200]: GET /script/deleteFile.js
+[Mon Dec 18 09:42:16 2023] 172.22.0.1:51462 Closing
+[Mon Dec 18 09:42:16 2023] 172.22.0.1:51466 Closing
+[Mon Dec 18 09:42:16 2023] 172.22.0.1:51478 Closing
+[Mon Dec 18 09:42:16 2023] 172.22.0.1:51480 Accepted
+[Mon Dec 18 09:42:16 2023] 172.22.0.1:51490 Accepted
+[Mon Dec 18 09:42:16 2023] 172.22.0.1:51502 Accepted
+[Mon Dec 18 09:42:16 2023] 172.22.0.1:51506 Accepted
+[Mon Dec 18 09:42:16 2023] 172.22.0.1:51520 Accepted
+[Mon Dec 18 09:42:16 2023] 172.22.0.1:51520 [200]: GET /script/index.js
+[Mon Dec 18 09:42:16 2023] 172.22.0.1:51520 Closing
+[Mon Dec 18 09:42:16 2023] 172.22.0.1:51506 [200]: GET /script/interactionData.js
+[Mon Dec 18 09:42:16 2023] 172.22.0.1:51502 [200]: GET /script/getData.js
+[Mon Dec 18 09:42:16 2023] 172.22.0.1:51490 [200]: GET /script/dragdrop.js
+[Mon Dec 18 09:42:16 2023] 172.22.0.1:51480 [200]: GET /script/downloadFile.js
+[Mon Dec 18 09:42:16 2023] 172.22.0.1:51506 Closing
+[Mon Dec 18 09:42:16 2023] 172.22.0.1:51502 Closing
+[Mon Dec 18 09:42:16 2023] 172.22.0.1:51490 Closing
+[Mon Dec 18 09:42:16 2023] 172.22.0.1:51480 Closing
+[Mon Dec 18 09:42:16 2023] 172.22.0.1:51536 Accepted
+[Mon Dec 18 09:42:16 2023] 172.22.0.1:51536 [200]: GET /style/polices/open-sans-600.woff2
+[Mon Dec 18 09:42:16 2023] 172.22.0.1:51538 Accepted
+[Mon Dec 18 09:42:16 2023] 172.22.0.1:51540 Accepted
+[Mon Dec 18 09:42:16 2023] 172.22.0.1:51538 [200]: POST /backend/getAppointment.php
+[Mon Dec 18 09:42:16 2023] 172.22.0.1:51538 Closing
+[Mon Dec 18 09:42:16 2023] 172.22.0.1:51546 Accepted
+[Mon Dec 18 09:42:16 2023] 172.22.0.1:51536 Closing
+[Mon Dec 18 09:42:16 2023] 172.22.0.1:51540 [200]: POST /backend/getAppointment.php
+[Mon Dec 18 09:42:16 2023] 172.22.0.1:51540 Closing
+[Mon Dec 18 09:42:16 2023] 172.22.0.1:51546 [200]: POST /backend/getAppointment.php
+[Mon Dec 18 09:42:16 2023] 172.22.0.1:51546 Closing
+[Mon Dec 18 09:42:16 2023] 172.22.0.1:55006 Accepted
+[Mon Dec 18 09:42:16 2023] 172.22.0.1:55006 [200]: GET /img/favicon.webp
+[Mon Dec 18 09:42:16 2023] 172.22.0.1:55006 Closing
+[Mon Dec 18 09:42:16 2023] 172.22.0.1:55016 Accepted
+[Mon Dec 18 09:42:16 2023] 172.22.0.1:55016 [200]: GET /img/file.png
+[Mon Dec 18 09:42:16 2023] 172.22.0.1:55016 Closing
+[Mon Dec 18 09:42:31 2023] 172.22.0.1:57944 Accepted
+[Mon Dec 18 09:42:31 2023] 172.22.0.1:57944 [200]: POST /backend/addAppointment.php
+[Mon Dec 18 09:42:31 2023] 172.22.0.1:57944 Closing
+[Mon Dec 18 09:42:31 2023] 172.22.0.1:57956 Accepted
+[Mon Dec 18 09:42:32 2023] 172.22.0.1:57956 [200]: POST /backend/sendAppCMIMutuelle.php
+[Mon Dec 18 09:42:32 2023] 172.22.0.1:57956 Closing
+[Mon Dec 18 09:42:32 2023] 172.22.0.1:57972 Accepted
