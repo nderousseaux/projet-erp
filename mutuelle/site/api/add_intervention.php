@@ -26,7 +26,7 @@ $intervention   = urldecode($_GET["intervention"]);
 $commentaire    = urldecode($_GET["commentaire"]);
 $lieu           = urldecode($_GET["lieu"]);
 $total          = urldecode($_GET["total"]);		// cout total de l'intervention
-$id_acte		= urldecode($_GET["id_acte"]);		// montant paye par hopital
+$id_acte		= urldecode($_GET["id_acte"]);
 
 $pec        = 50;					// prise en charge 50% par défaut
 $virement   = $total * $pec/100;	// somme prise en charge par mutuelle ( % du total de l'intervention, a verser a hopital)

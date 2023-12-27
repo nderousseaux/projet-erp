@@ -10,7 +10,7 @@ services:
       networks:
         - "mutuelle_erp-net"
       volumes:
-        - ./backend/bdd/hopital.db:/app/backend/bdd/hopital.db
+        - ./backend/bdd/hopital.db:/app/backend/bdd/
 
       ports:
         - 3003:3003
