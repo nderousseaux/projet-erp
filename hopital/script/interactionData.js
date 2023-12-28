@@ -131,6 +131,7 @@ function ajoutRdv() {
 				.then(idExam => {
 					sendAppCMIMutuelle(idExam, "dmi");
 					sendAppCMIMutuelle(idExam, "mutuelle");
+					location.reload();
 				})
 				.catch(error => {
 					console.error(error);

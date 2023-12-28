@@ -1,6 +1,6 @@
 .DS_Store
 .idea
 backend/bdd/
-hopital/debug/hopital.db
+hopital.db
 Sujet.pdf
 logs/
